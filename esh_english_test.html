@@ -408,7 +408,7 @@ function submitTest(){
   const grade=pct>=90?'🏆 Маш сайн! Гайхалтай!':pct>=75?'⭐ Сайн! Цааш хичээ!':pct>=60?'📗 Дунд зэрэг':'📕 Дахин давтан суралц';
   document.getElementById('sc-grade').textContent=grade;
   document.getElementById('sc-desc').textContent=correct+' / '+Q.length+' зөв хариулсан';
-  const totalScore=Math.round(correct/Q.length*800);
+  const totalScore=Math.round(200+(correct/Q.length)*600);
   document.getElementById('sc-correct').textContent=correct;
   document.getElementById('sc-wrong').textContent=wrong;
   document.getElementById('sc-skip').textContent=skip;
