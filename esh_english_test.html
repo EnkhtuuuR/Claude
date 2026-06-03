@@ -39,13 +39,13 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--warm-white);color
 .btn-start:active{transform:translateY(0)}
 
 /* ── MAIN WRAP ── */
-.page-header{background:linear-gradient(135deg,#C46A0D 0%,#E8821A 50%,#F5A340 100%);padding:1.25rem 1.5rem 3.25rem;position:relative;overflow:hidden}
+.page-header{background:linear-gradient(135deg,#C46A0D 0%,#E8821A 50%,#F5A340 100%);padding:0.5rem 1rem 1.75rem;position:relative;overflow:hidden}
 .page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,220,130,.25) 0%,transparent 60%);pointer-events:none}
 .header-inner{max-width:720px;margin:0 auto;position:relative}
 .header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:700;color:#fff;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
 .header-title{font-size:20px;font-weight:700;color:#fff;line-height:1.3}
 .header-sub{font-size:12px;color:rgba(255,255,255,.8);margin-top:3px}
-.main-wrap{max-width:720px;margin:-2rem auto 2rem;padding:0 1rem}
+.main-wrap{max-width:720px;margin:-1.25rem auto 2rem;padding:0 1rem}
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:1.5rem}
 
 /* ── PROGRESS ── */
@@ -126,7 +126,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--warm-white);color
 .all-correct{text-align:center;padding:20px;background:var(--success-bg);border:1px solid var(--success-bdr);border-radius:var(--radius-md);font-size:15px;font-weight:600;color:var(--success)}
 
 @media(max-width:480px){
-  .page-header{padding:1rem 1rem 3rem}
+  .page-header{padding:0.4rem 0.75rem 1.5rem}
   .header-title{font-size:17px}
   .card{padding:1rem;border-radius:var(--radius-md)}
   .cover-title{font-size:22px}
@@ -144,12 +144,12 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--warm-white);color
     <div class="cover-sub">Түвшин сорих материал</div>
     <div class="cover-desc">
       Grammar · Vocabulary · Communication · Reading<br>
-      болон Part II — Нийт 71 асуулт · 4 хэсэг
+      болон Part II — Нийт 63 асуулт · 4 хэсэг
     </div>
     <div class="cover-stats">
-      <div class="cover-stat"><div class="cover-stat-num">71</div><div class="cover-stat-lbl">Асуулт</div></div>
+      <div class="cover-stat"><div class="cover-stat-num">63</div><div class="cover-stat-lbl">Асуулт</div></div>
       <div class="cover-stat"><div class="cover-stat-num">4</div><div class="cover-stat-lbl">Хэсэг</div></div>
-      <div class="cover-stat"><div class="cover-stat-num">71</div><div class="cover-stat-lbl">Оноо</div></div>
+      <div class="cover-stat"><div class="cover-stat-num">800</div><div class="cover-stat-lbl">Оноо</div></div>
     </div>
     <button class="btn-start" onclick="startTest()">🚀 Эхлэх</button>
   </div>
@@ -159,9 +159,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--warm-white);color
 <div id="test-view" style="display:none">
   <div class="page-header">
     <div class="header-inner">
-      <div class="header-badge">ЭШ Англи Хэл</div>
-      <div class="header-title">Түвшин сорих материал</div>
-      <div class="header-sub">Grammar · Vocabulary · Communication · Reading · Part II</div>
+      <div class="header-title" style="font-size:16px">ЭШ Англи Хэл — Түвшин сорих материал</div>
     </div>
   </div>
   <div class="main-wrap">
@@ -244,7 +242,6 @@ const Q=[
 {s:"Section 1 — Grammar",n:1,q:"I don't mind __________ a cat in my house so long as it doesn't smell.",opts:["had","have","to have","having","have to"],ans:3,tip:"'Don't mind + gerund (-ing)' бүтэц хэрэглэнэ. 'I don't mind doing something' = ямар нэг зүйл хийхэд санаа зовохгүй байх."},
 {s:"Section 1 — Grammar",n:2,q:"Let's go and have a cup of coffee. We have _______ time before the train leaves.",opts:["few","no","a little","little","any"],ans:2,tip:"'Time' тооллогдохгүй нэр үг тул 'a little' (бага зэрэг) хэрэглэнэ. 'Few' тооллогдох нэр үгтэй хэрэглэгддэг."},
 {s:"Section 1 — Grammar",n:3,q:"The house was empty for a month _________ my neighbors moved out.",opts:["while","until","during","after","before"],ans:3,tip:"'After' = ...дараа. Хөрш нүүсний ДАРАА байшин хоосон байсан. 'Before' буруу, учир нь нүүхийн өмнө хоосон биш байсан."},
-{s:"Section 1 — Grammar",n:4,q:"We didn't have __________ luggage – just two small bags.",opts:["much","many","a","any","–"],ans:0,tip:"'Luggage' тооллогдохгүй нэр үг тул 'much' хэрэглэнэ. 'Many' нь тооллогдох нэр үгтэй хэрэглэгддэг."},
 {s:"Section 1 — Grammar",n:5,q:"Eventually you'll __________ the smells in the laboratory.",opts:["got use to","get use to","used to","got used to","get used to"],ans:4,tip:"'Get used to + noun/gerund' = ямар нэг зүйлд дасах. Ирээдүйн цаг тул 'will get used to' зөв."},
 {s:"Section 1 — Grammar",n:6,q:"I regret __________ you that you are not selected for the interview.",opts:["told","telling","tell","having told","to tell"],ans:4,tip:"'Regret + to infinitive' = муу мэдээ хэлэхдээ харамсах (одоо үйлдэж буй). 'Regret + -ing' = өнгөрсөн үйлдлийг харамсах."},
 {s:"Section 1 — Grammar",n:7,q:"Your apartment is old and small. You would like to live in a nice big apartment.\nYou say: I wish I __________ in a nice big apartment.",opts:["would live","were living","had lived","have lived","lived"],ans:4,tip:"'I wish + past simple' = одоогийн бодит бус хүсэл. 'Lived' = зөв хэлбэр."},
@@ -270,9 +267,6 @@ const Q=[
 {s:"Section 2 — Vocabulary",n:21,q:"A _______ is a part of the building where a vehicle is kept.",opts:["garage","patio","garden","shade","concrete"],ans:0,tip:"Машин хадгалах байр = 'garage'. Patio = гадна талбай, garden = цэцэрлэг."},
 {s:"Section 2 — Vocabulary",n:22,q:"A _______ uses a computer or smartphone to commit crimes.",opts:["kidnapper","fraudster","vandal","mugger","cybercriminal"],ans:4,tip:"Компьютер, смартфон ашиглан гэмт хэрэг үйлдэгч = 'cybercriminal'."},
 {s:"Section 2 — Vocabulary",n:23,q:"Teaching English in a lively interesting way increases students' __________ to learn.",opts:["volunteering","tolerance","motivation","diversity","automation"],ans:2,tip:"'Motivation' = сэдэл, хөшүүрэг. Суралцах хүслийг нэмэгдүүлнэ."},
-{s:"Section 2 — Vocabulary",n:24,q:"The rain won't last long; it's only a __________.",opts:["downpour","breeze","hail","frost","shower"],ans:4,tip:"'Shower' = богинохон борооны аадар. Downpour = их хүчтэй бороо, breeze = зөөлөн салхи, hail = мөндөр, frost = хяруу."},
-{s:"Section 2 — Vocabulary",n:25,q:"__________ is a person whose job is riding horses in races.",opts:["Swimmer","Fencer","Runner","Jockey","Golfer"],ans:3,tip:"Морин уралдаанд унадаг хүн = 'jockey'. Swimmer = усчин, fencer = сэлэмчин, runner = гүйгч."},
-{s:"Section 2 — Vocabulary",n:26,q:"The two countries have __________ close ties for centuries.",opts:["confused","distracted","maintained","debated","ignored"],ans:2,tip:"'Maintain' = хадгалах, тогтвортой байлгах. 'Maintained close ties' = олон зуун жил нягт харилцаатай байсан."},
 {s:"Section 2 — Vocabulary",n:27,q:"Regular exercise is good for your body and brain. It _______ your blood with oxygen.",opts:["stores","enriches","influences","processes","produces"],ans:1,tip:"'Enrich' = баяжуулах. 'Enriches your blood with oxygen' = цусыг хүчилтөрөгчөөр баяжуулна."},
 
 // ─── SECTION 2 — VOCABULARY Task 2 — Fill in Story (28-32) ───
@@ -280,12 +274,10 @@ const Q=[
 {s:"Section 2 — Vocabulary (Fill in Story)",n:29,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted",q:"He had been __________ previously of petty crime, but never anything serious.",opts:["suspected","heard","questioned","charged","convicted"],ans:4,tip:"'Be convicted of' = ял шийтгүүлэх, буруутай гэж шүүхэд тогтоогдох."},
 {s:"Section 2 — Vocabulary (Fill in Story)",n:30,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted",q:"The police __________ him for several hours.",opts:["suspected","heard","questioned","charged","convicted"],ans:2,tip:"'Question someone' = байцаах, мөрдөн шалгах. Цагдаа хэдэн цаг байцаасан."},
 {s:"Section 2 — Vocabulary (Fill in Story)",n:31,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted",q:"The police finally __________ him with robbery.",opts:["suspected","heard","questioned","charged","convicted"],ans:3,tip:"'Charge someone with' = яллагдагчаар татах, хэрэг үүсгэх."},
-{s:"Section 2 — Vocabulary (Fill in Story)",n:32,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted",q:"A few weeks later his case would be __________ in court the following month.",opts:["suspected","heard","questioned","charged","convicted"],ans:1,tip:"'Case be heard' = хэргийг шүүн хэлэлцэх — хууль зүйн тогтмол хэллэг."},
 
 // ─── SECTION 2 — VOCABULARY Task 3 — Phrasal Verbs (33-35) ───
 {s:"Section 2 — Vocabulary (Phrasal Verbs)",n:33,q:"In which sentence does 'to take off' mean 'to remove something from a surface'?",opts:["Take off your shoes. You're getting mud on the carpet.","You need to take the old wax off the floor before you wax it again.","Our plane took off an hour late because of the snow.","If this business takes off, we could make a lot of money.","Alfonso always takes the skin off chicken before he cooks it."],ans:1,tip:"B = шалнаас (гадаргуугаас) лав арилгах. A = гутал тайлах, C = онгоц хөөрөх, D = бизнес өргөжих."},
 {s:"Section 2 — Vocabulary (Phrasal Verbs)",n:34,q:"I think he has the flu because you don't usually throw __________ when you have a cold.",opts:["back","out","on","off","up"],ans:4,tip:"'Throw up' = бөөлжих. Томуу (flu) болоход бөөлжиж болох ч жирийн ханиад (cold) болоход бөөлждөггүй."},
-{s:"Section 2 — Vocabulary (Phrasal Verbs)",n:35,q:"I'm sorry to cancel, but I just don't _________ up to going dancing today.",opts:["look","feel","take","get","bring"],ans:1,tip:"'Feel up to doing something' = ямар нэг зүйл хийх хүч, эрч байхгүй байх."},
 
 // ─── SECTION 2 — VOCABULARY Task 4 — Idioms (36-38) ───
 {s:"Section 2 — Vocabulary (Idioms)",n:36,q:"Jake and I lost our jobs yesterday. Now we are in the same boat.\nWhat does 'in the same boat' mean?",opts:["They are in the broken boat.","They have a good situation.","They are in the same bad situation.","They are looking for a job.","They are travelling by boat."],ans:2,tip:"'In the same boat' = адил хэцүү нөхцөлд байх. Хоёулаа ажлаасаа халагдсан тул адил нөхцөлд байна."},
@@ -296,8 +288,6 @@ const Q=[
 {s:"Section 3 — Communication",n:39,q:"Man: Does Judy prefer saving her money?\nWoman: __________ She loves to buy things.",opts:["Yes, she always saves her money.","Yes, she'd rather save.","No, she wouldn't rather spend her money.","Yes, she prefers saving her money.","No, she'd rather not save."],ans:4,tip:"'She loves to buy things' → мөнгө хэмнэдэггүй гэдэг нь тодорхой. 'No, she'd rather not save' = тийм ээ, хэмнэдэггүй."},
 {s:"Section 3 — Communication",n:40,q:"Girl: I really must be going now.\nBoy: But you've just come. Wouldn't you like to stay for a snack?\nGirl: That's very kind of you, but I mustn't be too late.\nBoy: __________\nGirl: Thanks very much for the party.",opts:["What a pity!","I'd be glad to.","With pleasure.","Sounds great.","What a surprise!"],ans:0,tip:"Охин явахаас татгалзсан тул хөвгүүн харамсалаа илэрхийлнэ. 'What a pity!' = Харамсалтай байна!"},
 {s:"Section 3 — Communication",n:41,q:"Student: Did people there use to be poor?\nTeacher: _________ They used to be rich.",opts:["Yes, they were.","Yes, they did.","No, they didn't.","No, they weren't.","No, people weren't."],ans:2,tip:"'Use to' асуулт/үгүйсгэлд 'did/didn't' туслах үйл үг хэрэглэнэ. 'No, they didn't' = зөв. Тэд баян байсан."},
-{s:"Section 3 — Communication",n:42,q:"Man: How did Fred manage to pass his social psychology class?\nWoman: It is a mystery to me.\nWhat does the woman mean?",opts:["Fred is mysterious.","She doesn't know.","Fred's class is not difficult.","Fred's social psychology class is mysterious.","Social psychology class is interesting to the woman."],ans:1,tip:"'It is a mystery to me' = надад ойлгомжгүй байна. B 'She doesn't know' = зөв."},
-{s:"Section 3 — Communication",n:43,q:"Woman: It's dark in the front hall.\nMan: The bulb's burned out.\nWhat does the woman imply?",opts:["The ball is in the front hall.","The light doesn't work.","She can smell something burning.","She turned the light off.","The woman has to light a candle."],ans:1,tip:"'Bulb's burned out' = чийдэн шатаж дууссан (гэрэл унтарсан). B 'The light doesn't work' = зөв."},
 
 // ─── SECTION 4 — READING (44-51) ───
 {s:"Section 4 — Reading",n:44,context:"THE WRONG GUY!\n\nThe story of Guy Goma is not one of stupidity. A former taxi driver from the French Congo, Mr Goma was at the BBC TV center for an interview, in the hope of becoming an IT assistant. So when a producer came up to him and said, \"Guy Kewney, isn't it? About the IT thing?\" he agreed, because he thought she had just got the wrong pronunciation of his surname.\n\nMr Goma, who had taught himself English after he moved to England four years previously, was rushed into a studio, where he found himself in front of the cameras, having questions thrown at him. How could he know that the man who'd been sitting on a nearby sofa was also called Guy? In fact Guy Kewney was an IT expert, who was waiting to go on live TV to be interviewed about a legal dispute with Apple computers.\n\n\"It all happened so fast,\" Goma told The Sun newspaper. \"I had just signed my name in reception when someone said 'Follow me.' She was walking so fast that I had to jog to keep up with her. Even though a lady put some make-up on me and I was fitted with a microphone, I just thought it was all part of the job interview and when I realized I was on air, what could I do? I just tried to answer the questions and stay calm.\"\n\nViewers reacted with a mixture of delight and sympathy to the key moment when the BBC's Karen Bowerman introduced Goma as \"Guy Kewney, head of newswireless.net!\" Across his expressive face flit a dozen expressions in a second — mainly shock, fear, guilt and embarrassment. However, instead of saying there had been a mistake, he answered three questions before the BBC staff became aware of what had happened.\n\nMr Goma was finally taken to his interview for the IT post, but despite going through such a bad experience he didn't get the job. Nevertheless, Mr Goma is now in demand as a celebrity, since hundreds of thousands of people have now watched his television appearance online.",q:"What is the article about?",opts:["It highlights the importance of clear communication.","It criticizes the BBC for its unprofessionalism.","It explains the difficulties in learning English.","It discusses the job interview process at the BBC.","It describes a humorous mix-up at the BBC."],ans:4,tip:"Нийтлэл BBC дэх хоёр 'Guy'-ийн буруу андуурсан тухай хошин түүх. E = зөв."},
@@ -418,10 +408,11 @@ function submitTest(){
   const grade=pct>=90?'🏆 Маш сайн! Гайхалтай!':pct>=75?'⭐ Сайн! Цааш хичээ!':pct>=60?'📗 Дунд зэрэг':'📕 Дахин давтан суралц';
   document.getElementById('sc-grade').textContent=grade;
   document.getElementById('sc-desc').textContent=correct+' / '+Q.length+' зөв хариулсан';
+  const totalScore=Math.round(correct/Q.length*800);
   document.getElementById('sc-correct').textContent=correct;
   document.getElementById('sc-wrong').textContent=wrong;
   document.getElementById('sc-skip').textContent=skip;
-  document.getElementById('sc-score').textContent=correct;
+  document.getElementById('sc-score').textContent=totalScore+' / 800';
 }
 
 function showReview(){
