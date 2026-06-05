@@ -21,7 +21,7 @@
 body{font-family:'Inter',system-ui,sans-serif;background:var(--warm-white);color:var(--text-main);min-height:100vh;line-height:1.6}
 
 /* ── COVER ── */
-#cover-view{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem;background:linear-gradient(160deg,#C46A0D 0%,#E8821A 45%,#F5A340 100%);position:relative;overflow-x:hidden;overflow-y:auto}
+#cover-view{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem;background:linear-gradient(160deg,#C46A0D 0%,#E8821A 45%,#F5A340 100%);position:relative}
 #cover-view::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(255,220,130,.2) 0%,transparent 60%);pointer-events:none}
 .cover-card{background:rgba(255,255,255,.97);border-radius:24px;padding:2.5rem 2rem;max-width:480px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.18);position:relative;z-index:1}
 .cover-badge{display:inline-flex;align-items:center;gap:6px;background:var(--amber-pale);border:1.5px solid var(--border);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:700;color:var(--amber-dark);text-transform:uppercase;letter-spacing:.07em;margin-bottom:1.25rem}
@@ -200,7 +200,7 @@ button.opt:disabled{opacity:1}
       <div class="cover-stat"><div class="cover-stat-num">4</div><div class="cover-stat-lbl">Хэсэг</div></div>
       <div class="cover-stat"><div class="cover-stat-num">800</div><div class="cover-stat-lbl">Оноо</div></div>
     </div>
-    <button class="btn-start" onclick="startTest()">🚀 Эхлэх</button>
+    <button class="btn-start" id="start-btn">🚀 Эхлэх</button>
   </div>
 </div>
 
@@ -498,6 +498,21 @@ function backToScore(){
   document.getElementById('review-view').style.display='none';
   document.getElementById('score-view').style.display='block';
 }
+
+// Bind start button — touchend for iOS, click for desktop
+(function(){
+  var btn=document.getElementById('start-btn');
+  var fired=false;
+  btn.addEventListener('touchend',function(e){
+    e.preventDefault();
+    if(!fired){fired=true;startTest();}
+    setTimeout(function(){fired=false;},300);
+  },{passive:false});
+  btn.addEventListener('click',function(){
+    if(!fired){fired=true;startTest();}
+    setTimeout(function(){fired=false;},300);
+  });
+})();
 
 function restartTest(){
   cur=0;answers=new Array(Q.length).fill(null);submitted=false;
