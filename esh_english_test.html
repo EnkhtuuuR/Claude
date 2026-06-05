@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЭШ Англи Хэл — Түвшин Сорих Материал</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap') screen;
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --amber:#E8821A;--amber-dark:#C46A0D;--amber-light:#F5A340;
@@ -129,15 +129,7 @@ button.opt{appearance:none;-webkit-appearance:none}
 .ri-ans .wrong-ans{color:var(--error)}
 .all-correct{text-align:center;padding:20px;background:var(--success-bg);border:1px solid var(--success-bdr);border-radius:var(--radius-md);font-size:15px;font-weight:600;color:var(--success)}
 
-/* desktop/mobile button swap */
-.mob-only{display:none}
-.desk-only{display:block}
-a.btn-start{text-decoration:none;display:block;line-height:normal}
-
 @media(max-width:600px){
-  .mob-only{display:block}
-  .desk-only{display:none!important}
-
   /* Cover */
   #cover-view::before{display:none}
   #cover-view{padding:1rem 0.75rem;justify-content:flex-start;padding-top:2rem}
@@ -208,10 +200,10 @@ a.btn-start{text-decoration:none;display:block;line-height:normal}
       <div class="cover-stat"><div class="cover-stat-num">4</div><div class="cover-stat-lbl">Хэсэг</div></div>
       <div class="cover-stat"><div class="cover-stat-num">800</div><div class="cover-stat-lbl">Оноо</div></div>
     </div>
-    <!-- desktop button -->
-    <button class="btn-start desk-only" id="start-btn" onclick="startTest()">🚀 Эхлэх</button>
-    <!-- mobile anchor — <a href> is guaranteed to fire on every iOS Safari -->
-    <a class="btn-start mob-only" href="javascript:startTest()">🚀 Эхлэх</a>
+    <!-- form onsubmit works on every browser/device without exception -->
+    <form onsubmit="startTest();return false;" style="margin:0;width:100%">
+      <button type="submit" class="btn-start">🚀 Эхлэх</button>
+    </form>
   </div>
 </div>
 
@@ -389,16 +381,10 @@ const Q=[
 let cur=0,answers=new Array(Q.length).fill(null),submitted=false;
 
 function startTest(){
-  try{
-    document.getElementById('cover-view').style.display='none';
-    document.getElementById('test-view').style.display='block';
-    window.scrollTo(0,0);
-    render();
-  }catch(e){
-    document.getElementById('cover-view').style.display='none';
-    document.getElementById('test-view').style.display='block';
-    document.getElementById('test-view').innerHTML='<div style="padding:2rem;color:red;font-size:14px">Алдаа: '+e.message+'</div>';
-  }
+  document.getElementById('cover-view').style.display='none';
+  document.getElementById('test-view').style.display='block';
+  window.scrollTo(0,0);
+  render();
 }
 
 function render(){
