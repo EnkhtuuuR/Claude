@@ -67,7 +67,6 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--warm-white);color
 
 /* ── OPTION BUTTON RESET ── */
 button.opt{appearance:none;-webkit-appearance:none}
-button.opt:disabled{opacity:1}
 
 /* ── QUESTION ── */
 .q-block{background:var(--warm-white);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:1.25rem;margin-bottom:.875rem}
@@ -200,7 +199,7 @@ button.opt:disabled{opacity:1}
       <div class="cover-stat"><div class="cover-stat-num">4</div><div class="cover-stat-lbl">Хэсэг</div></div>
       <div class="cover-stat"><div class="cover-stat-num">800</div><div class="cover-stat-lbl">Оноо</div></div>
     </div>
-    <button class="btn-start" id="start-btn">🚀 Эхлэх</button>
+    <button class="btn-start" id="start-btn" onclick="startTest()">🚀 Эхлэх</button>
   </div>
 </div>
 
@@ -378,9 +377,16 @@ const Q=[
 let cur=0,answers=new Array(Q.length).fill(null),submitted=false;
 
 function startTest(){
-  document.getElementById('cover-view').style.display='none';
-  document.getElementById('test-view').style.display='block';
-  render();
+  try{
+    document.getElementById('cover-view').style.display='none';
+    document.getElementById('test-view').style.display='block';
+    window.scrollTo(0,0);
+    render();
+  }catch(e){
+    document.getElementById('cover-view').style.display='none';
+    document.getElementById('test-view').style.display='block';
+    document.getElementById('test-view').innerHTML='<div style="padding:2rem;color:red;font-size:14px">Алдаа: '+e.message+'</div>';
+  }
 }
 
 function render(){
@@ -407,8 +413,7 @@ function render(){
     } else {
       if(answers[cur]===i) cls+=' selected';
     }
-    html+='<button type="button" class="'+cls+'" onclick="pick('+i+')"'+
-      (submitted?' disabled style="cursor:default"':'')+'>'+
+    html+='<button type="button" class="'+cls+'" onclick="pick('+i+')">'+
       '<span class="opt-letter">'+letters[i]+'</span>'+
       '<span class="opt-label">'+escHtml(o)+'</span>'+
     '</button>';
@@ -499,20 +504,7 @@ function backToScore(){
   document.getElementById('score-view').style.display='block';
 }
 
-// Bind start button — touchend for iOS, click for desktop
-(function(){
-  var btn=document.getElementById('start-btn');
-  var fired=false;
-  btn.addEventListener('touchend',function(e){
-    e.preventDefault();
-    if(!fired){fired=true;startTest();}
-    setTimeout(function(){fired=false;},300);
-  },{passive:false});
-  btn.addEventListener('click',function(){
-    if(!fired){fired=true;startTest();}
-    setTimeout(function(){fired=false;},300);
-  });
-})();
+document.getElementById('start-btn').addEventListener('touchend',function(e){e.preventDefault();startTest();},{passive:false});
 
 function restartTest(){
   cur=0;answers=new Array(Q.length).fill(null);submitted=false;
