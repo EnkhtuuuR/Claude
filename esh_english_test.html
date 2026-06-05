@@ -200,10 +200,7 @@ button.opt,label.opt{appearance:none;-webkit-appearance:none;box-sizing:border-b
       <div class="cover-stat"><div class="cover-stat-num">4</div><div class="cover-stat-lbl">Хэсэг</div></div>
       <div class="cover-stat"><div class="cover-stat-num">800</div><div class="cover-stat-lbl">Оноо</div></div>
     </div>
-    <!-- form onsubmit works on every browser/device without exception -->
-    <form onsubmit="startTest();return false;" style="margin:0;width:100%">
-      <button type="submit" class="btn-start">🚀 Эхлэх</button>
-    </form>
+    <a id="start-link" href="#" class="btn-start" role="button" style="display:flex;align-items:center;justify-content:center;text-decoration:none">🚀 Эхлэх</a>
   </div>
 </div>
 
@@ -379,6 +376,8 @@ const Q=[
 ];
 
 let cur=0,answers=new Array(Q.length).fill(null),submitted=false;
+
+document.getElementById('start-link').addEventListener('click',function(e){e.preventDefault();startTest();});
 
 function startTest(){
   document.getElementById('cover-view').style.display='none';
