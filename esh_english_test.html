@@ -66,7 +66,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--warm-white);color
 .context-label{font-size:10px;font-weight:700;color:var(--amber-dark);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
 
 /* ── OPTION BUTTON RESET ── */
-button.opt{appearance:none;-webkit-appearance:none}
+button.opt,label.opt{appearance:none;-webkit-appearance:none;box-sizing:border-box}
 
 /* ── QUESTION ── */
 .q-block{background:var(--warm-white);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:1.25rem;margin-bottom:.875rem}
@@ -411,10 +411,12 @@ function render(){
     } else {
       if(answers[cur]===i) cls+=' selected';
     }
-    html+='<button type="button" class="'+cls+'" onclick="pick('+i+')">'+
+    const checked=(!submitted&&answers[cur]===i)?' checked':'';
+    html+='<label class="'+cls+'" for="opt'+i+'">'+
+      '<input type="radio" id="opt'+i+'" name="opt" value="'+i+'"'+checked+' style="position:absolute;opacity:0;width:0;height:0;pointer-events:none">'+
       '<span class="opt-letter">'+letters[i]+'</span>'+
       '<span class="opt-label">'+escHtml(o)+'</span>'+
-    '</button>';
+    '</label>';
   });
   html+='</div>';
   if(submitted){
@@ -422,6 +424,15 @@ function render(){
   }
   html+='</div>';
   document.getElementById('q-container').innerHTML=html;
+  // Attach change listeners after DOM is set — most iOS Safari-compatible approach
+  if(!submitted){
+    document.querySelectorAll('#q-container input[type=radio]').forEach(function(inp){
+      inp.addEventListener('change',function(){
+        answers[cur]=parseInt(this.value,10);
+        render();
+      });
+    });
+  }
   document.getElementById('prev-btn').style.display=cur>0?'':'none';
   document.getElementById('next-btn').style.display=cur<Q.length-1?'':'none';
   document.getElementById('submit-btn').style.display=(cur===Q.length-1&&!submitted)?'':'none';
@@ -429,12 +440,6 @@ function render(){
 
 function escHtml(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
-}
-
-function pick(i){
-  if(submitted) return;
-  answers[cur]=i;
-  render();
 }
 
 function goTo(i){
