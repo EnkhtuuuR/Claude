@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Сэдвийн бататгал</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --a:#E8821A;--ad:#C46A0D;--al:#F5A340;
+  --ap:#FEF3E2;--at:#FDF0D5;--bo:#F0D9B5;
+  --t1:#2D1F0A;--t2:#7A5C32;--t3:#A8845A;
+  --g:#10B981;--gd:#059669;
+  --ok:#5A9E3A;--okb:#EEF7E6;--okr:#7DC654;
+  --er:#D44B3A;--erb:#FDF0EE;--err:#E87A6A;
+}
+html,body{
+  font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  background:#FFFCF7;color:var(--t1);
+  -webkit-text-size-adjust:100%;
+  -webkit-font-smoothing:antialiased;
+}
+#cover{
+  min-height:100vh;
+  background:linear-gradient(160deg,#C46A0D 0%,#E8821A 50%,#F5A340 100%);
+  display:-webkit-flex;display:flex;
+  -webkit-flex-direction:column;flex-direction:column;
+  -webkit-align-items:center;align-items:center;
+  -webkit-justify-content:center;justify-content:center;
+  padding:20px 16px;
+}
+.card0{
+  background:#fff;border-radius:20px;
+  padding:32px 24px;max-width:460px;width:100%;
+  text-align:center;box-shadow:0 16px 48px rgba(0,0,0,.18);
+}
+.badge{
+  display:inline-block;background:var(--ap);
+  border:1.5px solid var(--bo);border-radius:50px;
+  padding:5px 14px;font-size:11px;font-weight:700;
+  color:var(--ad);text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;
+}
+.title{font-size:26px;font-weight:800;color:var(--t1);line-height:1.2;margin-bottom:6px}
+.title em{font-style:normal;color:var(--ad)}
+.sub{font-size:14px;font-weight:600;color:var(--t2);margin-bottom:8px}
+.desc{font-size:12px;color:var(--t3);margin-bottom:20px;line-height:1.65}
+.stats{display:-webkit-flex;display:flex;gap:8px;margin-bottom:24px}
+.stat{-webkit-flex:1;flex:1;background:var(--ap);border:1px solid var(--bo);border-radius:9px;padding:10px 4px;text-align:center}
+.stat-n{font-size:20px;font-weight:800;color:var(--ad)}
+.stat-l{font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.topics{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:6px;margin-bottom:24px}
+.topic{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:8px;background:var(--ap);border:1px solid var(--bo);border-radius:8px;padding:8px 12px;text-align:left}
+.topic-icon{font-size:16px;flex-shrink:0}
+.topic-text{font-size:12px;font-weight:600;color:var(--t2)}
+#start-btn{
+  display:block;width:100%;padding:18px 16px;
+  background:linear-gradient(135deg,#059669,#10B981);
+  border:none;border-radius:12px;color:#fff;
+  font-size:18px;font-weight:800;font-family:inherit;
+  letter-spacing:.03em;cursor:pointer;
+  -webkit-appearance:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
+  touch-action:manipulation;box-shadow:0 4px 16px rgba(16,185,129,.35);
+}
+.view{display:none}
+.hdr{background:linear-gradient(135deg,#C46A0D 0%,#E8821A 60%,#F5A340 100%);padding:16px 14px 22px}
+.hdr-t{font-size:16px;font-weight:700;color:#fff}
+.hdr-s{font-size:11px;color:rgba(255,255,255,.8);margin-top:3px}
+.wrap{max-width:700px;margin:-14px auto 32px;padding:0 12px 40px}
+.card{background:#fff;border:1px solid var(--bo);border-radius:16px;padding:16px;box-shadow:0 4px 14px rgba(180,100,20,.1)}
+.pr{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;margin-bottom:6px}
+.pr-l{font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.05em}
+.pr-c{font-size:12px;font-weight:700;color:var(--a)}
+.pr-bar{height:6px;background:#F0D9B5;border-radius:6px;overflow:hidden;margin-bottom:14px}
+.pr-fill{height:100%;background:linear-gradient(90deg,var(--ad),var(--al));border-radius:6px;transition:width .3s ease}
+.sec{display:inline-block;background:var(--ap);border:1px solid var(--bo);border-radius:50px;padding:3px 10px;font-size:9px;font-weight:700;color:var(--ad);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.ctx{background:var(--ap);border:1px solid var(--bo);border-left:3px solid var(--a);border-radius:9px;padding:11px 12px;margin-bottom:12px;font-size:13px;color:var(--t2);line-height:1.7;white-space:pre-wrap;max-height:200px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ctx-l{font-size:9px;font-weight:700;color:var(--ad);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.qb{background:#FFFCF7;border:1px solid #FAE8C8;border-radius:12px;padding:14px;margin-bottom:10px}
+.qt{font-size:15px;color:var(--t1);line-height:1.7;margin-bottom:12px;white-space:pre-line}
+.qn{display:inline-flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;width:24px;height:24px;background:linear-gradient(135deg,var(--ad),var(--a));color:#fff;border-radius:50%;font-size:11px;font-weight:700;margin-right:6px;vertical-align:middle}
+.opts{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:8px}
+.opt{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:10px;padding:13px 12px;background:#fff;border:1.5px solid var(--bo);border-radius:9px;-webkit-tap-highlight-color:rgba(232,130,26,.12);touch-action:manipulation;cursor:pointer;min-height:48px;width:100%;-webkit-user-select:none;user-select:none;position:relative}
+.opt input[type=radio]{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.opt.sel{background:var(--at);border-color:var(--a)}
+.opt.sel .ol{background:var(--a);color:#fff;border-color:var(--a)}
+.opt.cor{background:var(--okb);border-color:var(--okr)}
+.opt.cor .ol{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.wrn{background:var(--erb);border-color:var(--err)}
+.opt.wrn .ol{background:var(--er);color:#fff;border-color:var(--er)}
+.ol{display:inline-flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;min-width:24px;height:24px;background:var(--ap);border:1.5px solid var(--bo);border-radius:5px;font-size:12px;font-weight:700;color:var(--t2);flex-shrink:0;margin-top:1px}
+.ot{font-size:14px;color:var(--t1);line-height:1.5}
+.expl{margin-top:10px;padding:11px 12px;background:var(--ap);border:1px solid var(--bo);border-left:3px solid var(--a);border-radius:9px;font-size:13px;color:var(--t2);line-height:1.6}
+.nav{display:-webkit-flex;display:flex;gap:8px;margin-top:12px}
+.btn{-webkit-flex:1;flex:1;padding:14px 10px;border:1.5px solid var(--bo);border-radius:9px;background:#fff;cursor:pointer;font-size:14px;font-weight:600;color:var(--t2);font-family:inherit;text-align:center;-webkit-appearance:none;-webkit-tap-highlight-color:rgba(0,0,0,0);touch-action:manipulation;min-height:48px}
+.btn.am{background:linear-gradient(135deg,var(--ad),var(--a));border-color:transparent;color:#fff}
+.btn.gn{background:linear-gradient(135deg,var(--gd),var(--g));border-color:transparent;color:#fff}
+.sh{text-align:center;padding:16px 0 12px;border-bottom:1px solid #FAE8C8;margin-bottom:14px}
+.rw{display:inline-flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;position:relative;width:110px;height:110px;margin-bottom:12px}
+.rs{position:absolute;inset:0;transform:rotate(-90deg)}
+.rbg{fill:none;stroke:#F0D9B5;stroke-width:10}
+.rfg{fill:none;stroke:var(--a);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.sp{font-size:28px;font-weight:800;color:var(--ad);position:relative;z-index:1}
+.sg{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.sd{font-size:13px;color:var(--t3)}
+.sg2{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.sm{-webkit-flex:1 1 120px;flex:1 1 120px;background:var(--ap);border:1px solid var(--bo);border-radius:9px;padding:11px;text-align:center}
+.sn{font-size:22px;font-weight:800;color:var(--ad)}
+.sl{font-size:9px;font-weight:700;color:var(--t3);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.ri{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:9px;padding:11px;border-radius:9px;margin-bottom:8px;font-size:13px;line-height:1.5;border:1px solid transparent}
+.ri.bad{background:var(--erb);border-color:var(--err)}
+.ri.ok{background:var(--okb);border-color:var(--okr)}
+.ric{width:20px;height:20px;border-radius:50%;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
+.ri.bad .ric{background:var(--er);color:#fff}
+.ri.ok .ric{background:var(--ok);color:#fff}
+.riq{color:var(--t1);font-weight:500}
+.ria{font-size:12px;margin-top:3px}
+.ria .c{color:var(--ok);font-weight:600}
+.ria .w{color:var(--er)}
+.rit{color:var(--t3);font-size:12px;margin-top:3px}
+.allok{text-align:center;padding:20px;background:var(--okb);border:1px solid var(--okr);border-radius:12px;font-size:15px;font-weight:600;color:var(--ok)}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div id="cover">
+  <div class="card0">
+    <div class="badge">Граммарын бататгал</div>
+    <div class="title">Сэдвийн <em>бататгал</em></div>
+    <div class="sub">Grammar + Reading дасгал</div>
+    <div class="desc">4 сэдвийн граммар болон уншлагын дасгал — нийт 40 оноо</div>
+    <div class="topics">
+      <div class="topic"><span class="topic-icon">📖</span><span class="topic-text">Articles — a, an, the хэрэглээ</span></div>
+      <div class="topic"><span class="topic-icon">👤</span><span class="topic-text">Pronouns — Subject, Object, Reflexive</span></div>
+      <div class="topic"><span class="topic-icon">🏠</span><span class="topic-text">Possessives — 's болон Possessive pronouns</span></div>
+      <div class="topic"><span class="topic-icon">🔢</span><span class="topic-text">Countable/Uncountable — Quantifiers</span></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">30</div><div class="stat-l">Граммар</div></div>
+      <div class="stat"><div class="stat-n">10</div><div class="stat-l">Уншлага</div></div>
+      <div class="stat"><div class="stat-n">40</div><div class="stat-l">Нийт оноо</div></div>
+    </div>
+    <button id="start-btn" type="button">🚀 Эхлэх</button>
+  </div>
+</div>
+
+<!-- TEST -->
+<div id="test" class="view">
+  <div class="hdr">
+    <div class="hdr-t">Сэдвийн бататгал — Grammar + Reading</div>
+    <div class="hdr-s">Articles · Pronouns · Possessives · Countable/Uncountable</div>
+  </div>
+  <div class="wrap">
+    <div class="card">
+      <div class="pr"><span class="pr-l">Явц</span><span class="pr-c" id="cnt">1 / 40</span></div>
+      <div class="pr-bar"><div class="pr-fill" id="pf" style="width:0%"></div></div>
+      <div id="qa"></div>
+      <div class="nav">
+        <button class="btn" id="pb" type="button">← Өмнөх</button>
+        <button class="btn" id="nb" type="button">Дараах →</button>
+        <button class="btn gn" id="db" type="button" style="display:none">Дуусгах ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCORE -->
+<div id="score" class="view">
+  <div class="hdr"><div class="hdr-t">Дасгал дууссан</div></div>
+  <div class="wrap">
+    <div class="card">
+      <div class="sh">
+        <div class="rw">
+          <svg class="rs" viewBox="0 0 110 110">
+            <circle class="rbg" cx="55" cy="55" r="46"/>
+            <circle class="rfg" id="rfg" cx="55" cy="55" r="46" stroke-dasharray="289" stroke-dashoffset="289"/>
+          </svg>
+          <span class="sp" id="spct">0</span>
+        </div>
+        <div class="sg" id="sgr"></div>
+        <div class="sd" id="sds"></div>
+      </div>
+      <div class="sg2">
+        <div class="sm"><div class="sn" id="scor">0</div><div class="sl">Зөв хариулт</div></div>
+        <div class="sm"><div class="sn" id="swrn">0</div><div class="sl">Буруу хариулт</div></div>
+        <div class="sm"><div class="sn" id="sskp">0</div><div class="sl">Хариулаагүй</div></div>
+        <div class="sm"><div class="sn" id="stot">0 / 40</div><div class="sl">Нийт оноо</div></div>
+      </div>
+      <div class="nav" style="-webkit-justify-content:center;justify-content:center">
+        <button class="btn am" id="rb" type="button">↺ Дахин эхлэх</button>
+        <button class="btn" id="rvb" type="button">Алдаагаа харах →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEW -->
+<div id="review" class="view">
+  <div class="hdr"><div class="hdr-t">Хаана алдсанаа харах</div></div>
+  <div class="wrap">
+    <div class="card">
+      <div id="rvc"></div>
+      <div class="nav" style="-webkit-justify-content:center;justify-content:center;margin-top:16px">
+        <button class="btn am" id="rb2" type="button">↺ Дахин эхлэх</button>
+        <button class="btn" id="bk" type="button">← Үр дүн рүү буцах</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var Q=[
+// ── ARTICLES (1–8) ──
+{s:"Articles",n:1,q:"She is ___ teacher at the local school.",opts:["a","an","the","—"],ans:0,tip:"Ажил мэргэжлийг ерөнхийд нь ярихдаа 'a' ашиглана. 'Teacher' consonant авианаар эхэлдэг тул 'a teacher'."},
+{s:"Articles",n:2,q:"I saw ___ elephant at the zoo. ___ elephant was very friendly.",opts:["a / The","an / The","the / An","an / A"],ans:1,tip:"Анх дурьдахдаа 'an elephant' (vowel-аар эхэлсэн тул 'an'). Хоёр дахь удаагаа 'The elephant' — тодорхой болсон тул 'the'."},
+{s:"Articles",n:3,q:"___ sun rises in the east every morning.",opts:["A","An","The","—"],ans:2,tip:"Хорвоо дэлхийд цор ганц зүйлс дээр 'the' хэрэглэнэ. 'The sun, the moon' — ганцхан байдаг тул 'the'."},
+{s:"Articles",n:4,q:"Paris is ___ capital of France.",opts:["a","an","the","—"],ans:2,tip:"'The capital of France' — тодорхой, цор ганц нийслэл. Specific зүйлийн өмнө 'the'."},
+{s:"Articles",n:5,q:"I have never seen ___ zebra before.",opts:["a","an","the","—"],ans:0,tip:"Ерөнхийд нь ганц тооны countable noun-ийн өмнө 'a'. 'Zebra' consonant авианаар эхэлдэг тул 'a zebra'."},
+{s:"Articles",n:6,q:"This is ___ best pizza I have ever eaten.",opts:["a","an","the","—"],ans:2,tip:"Superlative (best, worst, biggest...) -тай хамт заавал 'the' хэрэглэнэ."},
+{s:"Articles",n:7,q:"She goes to the gym twice ___ week.",opts:["a","an","the","—"],ans:0,tip:"'Twice a week, once a day' — давтамж илэрхийлэхдээ 'a' хэрэглэнэ."},
+{s:"Articles",n:8,q:"I love ___ dogs. They are loyal animals.",opts:["a","an","the","—"],ans:3,tip:"Олон тооны noun-ийг ерөнхийд нь ярихдаа article хэрэглэхгүй. 'I love dogs' = нохойнуудыг ерөнхийд нь хайрладаг."},
+
+// ── PRONOUNS (9–16) ──
+{s:"Pronouns",n:9,q:"Peter and ___ are good friends. ___ go to the same school every day.",opts:["me / We","I / We","I / Us","me / Us"],ans:1,tip:"'Peter and I' — subject position тул 'I'. 'We go' — олон тооны subject pronoun 'we'."},
+{s:"Pronouns",n:10,q:"Where is Anna? Have you seen ___?",opts:["she","her","hers","herself"],ans:1,tip:"'Seen' үйл үгийн дараа object pronoun хэрэглэнэ. 'Her' = object pronoun."},
+{s:"Pronouns",n:11,q:"Can you help ___ with this exercise? I don't understand it.",opts:["I","my","me","myself"],ans:2,tip:"'Help' үйл үгийн дараа object pronoun хэрэглэнэ. 'Help me' = объект."},
+{s:"Pronouns",n:12,q:"Mary is my teacher. I like ___ very much.",opts:["she","her","hers","herself"],ans:1,tip:"'Like' үйл үгийн дараа object pronoun. Mary = she → object нь 'her'."},
+{s:"Pronouns",n:13,q:"I cut ___ while cooking dinner last night.",opts:["me","my","I","myself"],ans:3,tip:"Subject болон object нь ижил хүн байвал reflexive pronoun хэрэглэнэ. 'I cut myself' = өөрийгөө хайчиллаа."},
+{s:"Pronouns",n:14,q:"She taught ___ how to play the guitar over the summer.",opts:["her","herself","she","hers"],ans:1,tip:"'She taught herself' — subject 'she', action нь өөрт нь буцаж ирж байна → reflexive 'herself'."},
+{s:"Pronouns",n:15,q:"___ am from Sweden and I love the cold weather there.",opts:["Me","My","I","Myself"],ans:2,tip:"Өгүүлбэрийн subject (өгүүлэгдэхүүн) байрлалд subject pronoun 'I' хэрэглэнэ."},
+{s:"Pronouns",n:16,q:"The children enjoyed ___ at the birthday party yesterday.",opts:["them","they","their","themselves"],ans:3,tip:"Subject 'the children' болон object ижил тул reflexive pronoun. 'Themselves' = олон тооны reflexive."},
+
+// ── POSSESSIVES (17–23) ──
+{s:"Possessives",n:17,q:"This is my pen. That one is ___.",opts:["my","mine","me","myself"],ans:1,tip:"'Mine' = possessive pronoun as a noun — нэр үгийг орлодог. 'That pen is mine' гэж хэрэглэнэ."},
+{s:"Possessives",n:18,q:"Is this Anna's bag? — Yes, it's ___.",opts:["her","hers","she","herself"],ans:1,tip:"Нэр үгийг (bag) орлож байгаа тул noun-like possessive pronoun 'hers' хэрэглэнэ."},
+{s:"Possessives",n:19,q:"These are our tickets. Where are ___?",opts:["your","yours","you","yourself"],ans:1,tip:"'Yours' = нэр үгийг (tickets) орлож буй possessive pronoun. 'Where are yours?' = Таны билетүүд хаана байна?"},
+{s:"Possessives",n:20,q:"This is ___ classroom. We study here every day.",opts:["our","ours","us","ourselves"],ans:0,tip:"Нэр үгийн (classroom) өмнө тэмдэг нэр шиг ашиглагдаж байна → adjective-like possessive 'our'."},
+{s:"Possessives",n:21,q:"The ___ tail is very long and fluffy.",opts:["dog","dogs","dog's","dogs'"],ans:2,tip:"Ганц нохойн сүүл → singular possessive 'dog's'. Apostrophe + s ашиглана."},
+{s:"Possessives",n:22,q:"My ___ house is very old but comfortable.",opts:["parent","parents","parent's","parents'"],ans:3,tip:"Хоёр эцэг эхийн гэр → plural possessive 'parents''. Олон тооны нэр үгийн дараа зөвхөн apostrophe."},
+{s:"Possessives",n:23,q:"Their house is big, but ___ is small.",opts:["our","ours","us","we"],ans:1,tip:"'Ours' = нэр үгийг (house) орлож буй possessive pronoun. 'Ours is small' гэж ашиглана."},
+
+// ── COUNTABLE / UNCOUNTABLE + QUANTIFIERS (24–30) ──
+{s:"Countable & Uncountable / Quantifiers",n:24,q:"I need some ___ about the train schedule.",opts:["informations","information","an information","the informations"],ans:1,tip:"'Information' = uncountable noun тул олон тоон дээр орохгүй, 'a/an' авахгүй. Заавал 'information' гэсэн хэлбэрээр хэрэглэнэ."},
+{s:"Countable & Uncountable / Quantifiers",n:25,q:"Could you give me some ___? I don't know what to do.",opts:["advices","an advice","advice","the advices"],ans:2,tip:"'Advice' = uncountable noun. 'Advices' гэж хэрэглэхгүй. 'Some advice' зөв хэлбэр."},
+{s:"Countable & Uncountable / Quantifiers",n:26,q:"How ___ sugar do you take in your coffee?",opts:["many","few","much","several"],ans:2,tip:"'Sugar' = uncountable noun. Uncountable noun-тай 'how much' хэрэглэнэ. 'Many/few/several' нь countable-тай хэрэглэгддэг."},
+{s:"Countable & Uncountable / Quantifiers",n:27,q:"There aren't ___ students in the classroom today.",opts:["some","any","much","little"],ans:1,tip:"Сөрөг өгүүлбэрт countable/uncountable аль алинтай нь 'any' хэрэглэнэ. 'Some' нь эерэг өгүүлбэрт хэрэглэгддэг."},
+{s:"Countable & Uncountable / Quantifiers",n:28,q:"I have ___ friends in this city, so I feel lonely.",opts:["a few","few","a little","little"],ans:1,tip:"'Few' (article-гүй) = маш цөөн, хангалтгүй → сөрөг утга. 'A few' = бага ч гэсэн хэдэн нь байна → эерэг утга. 'Friends' = countable."},
+{s:"Countable & Uncountable / Quantifiers",n:29,q:"We have ___ time before the movie starts. Let's get some food.",opts:["a little","a few","many","few"],ans:0,tip:"'Time' = uncountable noun. Uncountable-тай 'a little' (бага зэрэг) хэрэглэнэ. 'A few' нь countable-тай хэрэглэгддэг."},
+{s:"Countable & Uncountable / Quantifiers",n:30,q:"She bought ___ books from the bookstore yesterday.",opts:["much","a little","several","little"],ans:2,tip:"'Books' = countable noun. 'Several' (хэд хэдэн) нь countable noun-тай хэрэглэгддэг эерэг тоо."},
+
+// ── READING — A2/B1 SHORT TEXT (31–40) ──
+{s:"Reading Exercise",n:31,context:"THE LOST WALLET\n\nLast Monday, Tom was on his way to work when he found a wallet on the ground near the bus stop. He picked it up and opened it. Inside, there was a driver's license, some credit cards, and a little cash. There was no phone number, but the license had the owner's address on it.\n\nTom was late for work, so he couldn't go to the address immediately. He put the wallet in his bag and decided to go after work. That evening, he took a bus to the address on the license. An old woman opened the door. Her name was Margaret, and the wallet was hers.\n\n\"I lost it this morning!\" she said. \"I was very worried. There is a photo of my late husband inside, and that is more important to me than any money.\"\n\nTom returned the wallet, and Margaret was very grateful. She offered him a reward, but he refused. \"I'm just glad I could help,\" he said.\n\nThe next day, Tom received a letter. Margaret had written to his workplace to thank him. His manager read the letter to the whole office. Tom felt embarrassed, but also very happy.",q:"Where did Tom find the wallet?",opts:["On the bus","Near the bus stop","At his workplace","At Margaret's house"],ans:1,tip:"Текстэд 'he found a wallet on the ground near the bus stop' гэж байна."},
+{s:"Reading Exercise",n:32,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"Why couldn't Tom go to the address immediately?",opts:["He didn't know the address.","He lost the wallet again.","He was late for work.","He had no money for the bus."],ans:2,tip:"'Tom was late for work, so he couldn't go to the address immediately' гэж текстэд байна."},
+{s:"Reading Exercise",n:33,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"What was the most important thing inside the wallet for Margaret?",opts:["The cash","The credit cards","The driver's license","A photo of her husband"],ans:3,tip:"'There is a photo of my late husband inside, and that is more important to me than any money' гэж Margaret хэлсэн."},
+{s:"Reading Exercise",n:34,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"What did Margaret offer Tom?",opts:["A meal","A reward","A letter","A job"],ans:1,tip:"'She offered him a reward, but he refused' гэж текстэд байна."},
+{s:"Reading Exercise",n:35,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"How did Tom find out that Margaret had written about him?",opts:["She phoned him.","He saw it on the internet.","His manager read the letter at the office.","Margaret told him at the door."],ans:2,tip:"'His manager read the letter to the whole office' гэж текстэд байна."},
+{s:"Reading Exercise",n:36,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"Which sentence is TRUE about Tom?",opts:["He took the money from the wallet.","He found the wallet on the bus.","He went to Margaret's house in the evening.","He was embarrassed and left the office."],ans:2,tip:"'That evening, he took a bus to the address on the license' гэж текстэд байна."},
+{s:"Reading Exercise",n:37,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"What does the word 'grateful' mean in the text?",opts:["Angry","Thankful","Worried","Surprised"],ans:1,tip:"'Margaret was very grateful' — Tom түүний бэлгийг буцааж өгсний дараа талархсан. 'Grateful' = талархалтай."},
+{s:"Reading Exercise",n:38,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"How did Tom feel after his manager read the letter?",opts:["Only embarrassed","Only happy","Both embarrassed and happy","Angry and embarrassed"],ans:2,tip:"'Tom felt embarrassed, but also very happy' — хоёр мэдрэмжийг хамт мэдэрсэн."},
+{s:"Reading Exercise",n:39,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"Choose the correct article: Tom found ___ wallet near ___ bus stop.",opts:["a / a","a / the","the / a","the / the"],ans:1,tip:"Wallet = анх дурьдаж байгаа → 'a wallet'. Bus stop = тодорхой нэг буудал → 'the bus stop'."},
+{s:"Reading Exercise",n:40,context:"THE LOST WALLET (Дээрх өгүүллэгийг уншина уу)",q:"Choose the correct pronoun: Margaret opened the door. The wallet was ___.",opts:["her","hers","she","herself"],ans:1,tip:"'The wallet was hers' — нэр үгийг (wallet) орлож буй possessive pronoun 'hers' хэрэглэнэ. Энэ нь noun-like possessive pronoun."}
+];
+
+var L=['A','B','C','D'];
+var cur=0,ans=new Array(Q.length).fill(null),done=false;
+
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+function show(id){
+  var ids=['cover','test','score','review'];
+  for(var i=0;i<ids.length;i++){
+    var el=document.getElementById(ids[i]);
+    if(ids[i]==='cover'){
+      el.style.display=ids[i]===id?'flex':'none';
+    } else {
+      el.className=ids[i]===id?'view active':'view';
+      el.style.display=ids[i]===id?'block':'none';
+    }
+  }
+  window.scrollTo(0,0);
+}
+function render(){
+  var q=Q[cur];
+  var pct=Math.round(((cur+1)/Q.length)*100);
+  document.getElementById('pf').style.width=pct+'%';
+  document.getElementById('cnt').textContent=(cur+1)+' / '+Q.length;
+  var area=document.getElementById('qa');
+  while(area.firstChild) area.removeChild(area.firstChild);
+  var sl=document.createElement('div');sl.className='sec';sl.textContent=q.s;area.appendChild(sl);
+  if(q.context){
+    var cb=document.createElement('div');cb.className='ctx';
+    var cl=document.createElement('div');cl.className='ctx-l';cl.textContent='📖 Уншилтын хэсэг';
+    cb.appendChild(cl);
+    var ct=document.createElement('div');ct.innerHTML=esc(q.context);
+    cb.appendChild(ct);area.appendChild(cb);
+  }
+  var qb=document.createElement('div');qb.className='qb';
+  var qt=document.createElement('div');qt.className='qt';
+  var qn=document.createElement('span');qn.className='qn';qn.textContent=q.n;
+  var qs=document.createElement('span');qs.innerHTML=esc(q.q);
+  qt.appendChild(qn);qt.appendChild(qs);qb.appendChild(qt);
+  var od=document.createElement('div');od.className='opts';
+  q.opts.forEach(function(o,i){
+    var cls='opt';
+    if(done){if(i===q.ans) cls+=' cor';else if(ans[cur]===i) cls+=' wrn';}
+    else{if(ans[cur]===i) cls+=' sel';}
+    var lbl=document.createElement('label');lbl.className=cls;lbl.setAttribute('for','r'+i);
+    var inp=document.createElement('input');inp.type='radio';inp.name='q';inp.id='r'+i;inp.value=String(i);
+    if(!done&&ans[cur]===i) inp.checked=true;
+    if(done) inp.disabled=true;
+    var sp=document.createElement('span');sp.className='ol';sp.textContent=L[i];
+    var tx=document.createElement('span');tx.className='ot';tx.innerHTML=esc(o);
+    lbl.appendChild(inp);lbl.appendChild(sp);lbl.appendChild(tx);od.appendChild(lbl);
+  });
+  qb.appendChild(od);
+  if(done){
+    var ex=document.createElement('div');ex.className='expl';
+    ex.innerHTML='<strong>💡 Тайлбар:</strong> '+esc(q.tip);
+    qb.appendChild(ex);
+  }
+  area.appendChild(qb);
+  if(!done){
+    var radios=od.querySelectorAll('input[type=radio]');
+    for(var j=0;j<radios.length;j++){
+      (function(idx){radios[idx].addEventListener('change',function(){ans[cur]=idx;render();});})(j);
+    }
+  }
+  document.getElementById('pb').style.display=cur>0?'':'none';
+  document.getElementById('nb').style.display=cur<Q.length-1?'':'none';
+  document.getElementById('db').style.display=(cur===Q.length-1&&!done)?'':'none';
+}
+function tap(el,fn){
+  var touched=false;
+  el.addEventListener('touchstart',function(e){touched=true;fn(e);},{passive:false});
+  el.addEventListener('click',function(e){if(!touched) fn(e);touched=false;});
+}
+tap(document.getElementById('start-btn'),function(e){
+  e.preventDefault();cur=0;ans=new Array(Q.length).fill(null);done=false;show('test');render();
+});
+tap(document.getElementById('pb'),function(){if(cur>0){cur--;render();window.scrollTo(0,0);}});
+tap(document.getElementById('nb'),function(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);}});
+tap(document.getElementById('db'),function(){
+  done=true;
+  var c=0,w=0,s=0;
+  Q.forEach(function(q,i){if(ans[i]===null) s++;else if(ans[i]===q.ans) c++;else w++;});
+  var pct=Math.round((c/Q.length)*100);
+  document.getElementById('spct').textContent=c+'/40';
+  document.getElementById('scor').textContent=c;
+  document.getElementById('swrn').textContent=w;
+  document.getElementById('sskp').textContent=s;
+  document.getElementById('stot').textContent=c+' / 40 оноо';
+  var gr=c>=36?'🏆 Маш сайн! Гайхалтай!':c>=28?'⭐ Сайн! Цааш хичээ!':c>=20?'📗 Дунд зэрэг':'📕 Дахин давтан суралц';
+  document.getElementById('sgr').textContent=gr;
+  document.getElementById('sds').textContent=c+' / 40 асуултад зөв хариулсан';
+  show('score');
+  var circ=289;
+  setTimeout(function(){document.getElementById('rfg').style.strokeDashoffset=circ-(circ*pct/100);},150);
+});
+tap(document.getElementById('rvb'),function(){
+  var rv=document.getElementById('rvc');while(rv.firstChild) rv.removeChild(rv.firstChild);
+  var bad=false;
+  Q.forEach(function(q,i){
+    if(ans[i]===q.ans) return;bad=true;
+    var item=document.createElement('div');item.className='ri bad';
+    var ico=document.createElement('span');ico.className='ric';ico.textContent='✗';
+    var bd=document.createElement('div');
+    var ya=ans[i]!==null?L[ans[i]]+') '+q.opts[ans[i]]:'Хариулаагүй';
+    var ca=L[q.ans]+') '+q.opts[q.ans];
+    bd.innerHTML='<div class="riq">'+q.n+'. '+esc(q.q)+'</div>'+
+      '<div class="ria"><span class="w">Таны: '+esc(ya)+'</span> → <span class="c">Зөв: '+esc(ca)+'</span></div>'+
+      '<div class="rit">💡 '+esc(q.tip)+'</div>';
+    item.appendChild(ico);item.appendChild(bd);rv.appendChild(item);
+  });
+  if(!bad){var ok=document.createElement('div');ok.className='allok';ok.textContent='🎉 Бүх асуултад зөв хариулсан байна!';rv.appendChild(ok);}
+  show('review');
+});
+function restart(){cur=0;ans=new Array(Q.length).fill(null);done=false;show('cover');}
+tap(document.getElementById('rb'),restart);
+tap(document.getElementById('rb2'),restart);
+tap(document.getElementById('bk'),function(){show('score');});
+// Init cover display
+document.getElementById('cover').style.display='flex';
+</script>
+</body>
+</html>

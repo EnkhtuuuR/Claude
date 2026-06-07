@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025 Англи хэлний элсэлтийн шалгалт</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --amber:       #E8821A;
+    --amber-dark:  #C46A0D;
+    --amber-light: #F5A340;
+    --amber-pale:  #FEF3E2;
+    --amber-tint:  #FDF0D5;
+    --amber-muted: #F9C97C;
+    --warm-white:  #FFFCF7;
+    --card-bg:     #FFFFFF;
+    --border:      #F0D9B5;
+    --border-soft: #FAE8C8;
+    --text-main:   #2D1F0A;
+    --text-sec:    #7A5C32;
+    --text-muted:  #A8845A;
+    --success:     #5A9E3A;
+    --success-bg:  #EEF7E6;
+    --success-bdr: #7DC654;
+    --error:       #D44B3A;
+    --error-bg:    #FDF0EE;
+    --error-bdr:   #E87A6A;
+    --shadow-sm:   0 1px 3px rgba(180,100,20,0.08);
+    --shadow-md:   0 4px 16px rgba(180,100,20,0.12);
+    --shadow-lg:   0 8px 32px rgba(180,100,20,0.15);
+    --radius-sm:   8px;
+    --radius-md:   12px;
+    --radius-lg:   16px;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--warm-white);
+    color: var(--text-main);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Page shell ── */
+  .page-header {
+    background: linear-gradient(135deg, #C46A0D 0%, #E8821A 50%, #F5A340 100%);
+    padding: 1.5rem 1.5rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(255,220,130,0.25) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header-badge span { font-size: 14px; }
+  .header-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+  }
+
+  /* ── Main card pull-up ── */
+  .main-wrap {
+    max-width: 720px;
+    margin: -2rem auto 2rem;
+    padding: 0 1rem;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+  }
+
+  /* ── Progress ── */
+  .progress-area { margin-bottom: 1.25rem; }
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-sec);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .progress-counter {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--amber);
+  }
+  .progress-track {
+    height: 6px;
+    background: var(--border-soft);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber-dark), var(--amber-light));
+    border-radius: 100px;
+    transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ── Section label ── */
+  .section-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--amber-pale);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 3px 10px;
+    margin-bottom: 1rem;
+  }
+  .section-title::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Question block ── */
+  .q-block {
+    background: var(--warm-white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .q-text {
+    font-size: 15px;
+    color: var(--text-main);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .q-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    background: linear-gradient(135deg, var(--amber-dark), var(--amber));
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  /* ── Options ── */
+  .options { display: flex; flex-direction: column; gap: 7px; }
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.15s;
+    background: #fff;
+    position: relative;
+  }
+  .opt:hover {
+    background: var(--amber-pale);
+    border-color: var(--amber-muted);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(2px);
+  }
+  .opt.selected {
+    background: var(--amber-tint);
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(232,130,26,0.12);
+  }
+  .opt.selected .opt-letter {
+    background: var(--amber);
+    color: #fff;
+    border-color: var(--amber);
+  }
+  .opt.show-correct {
+    background: var(--success-bg);
+    border-color: var(--success-bdr);
+  }
+  .opt.show-correct .opt-letter {
+    background: var(--success);
+    color: #fff;
+    border-color: var(--success);
+  }
+  .opt.wrong {
+    background: var(--error-bg);
+    border-color: var(--error-bdr);
+  }
+  .opt.wrong .opt-letter {
+    background: var(--error);
+    color: #fff;
+    border-color: var(--error);
+  }
+  .opt-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px; height: 22px;
+    background: var(--amber-pale);
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-sec);
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .opt-label {
+    font-size: 14px;
+    color: var(--text-main);
+    line-height: 1.55;
+  }
+
+  /* ── Explanation ── */
+  .explanation {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, var(--amber-pale), #fff8ee);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--text-sec);
+    line-height: 1.6;
+  }
+  .explanation.show { display: block; }
+  .explanation strong { color: var(--amber-dark); }
+
+  /* ── Buttons ── */
+  .nav-btns { display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap; }
+  .btn {
+    padding: 9px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-sec);
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+  }
+  .btn:hover {
+    background: var(--amber-pale);
+    border-color: var(--amber-muted);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.primary {
+    background: linear-gradient(135deg, var(--amber-dark), var(--amber));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(196,106,13,0.35);
+  }
+  .btn.primary:hover {
+    background: linear-gradient(135deg, #a85a0a, var(--amber-dark));
+    box-shadow: 0 4px 14px rgba(196,106,13,0.4);
+  }
+
+  /* ── Score card ── */
+  .score-card {
+    display: none;
+    animation: fadeUp 0.4s ease;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .score-hero {
+    text-align: center;
+    padding: 1.5rem 0 1rem;
+    border-bottom: 1px solid var(--border-soft);
+    margin-bottom: 1.25rem;
+  }
+  .score-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: conic-gradient(var(--amber) var(--pct, 0%), var(--border-soft) 0%);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .score-ring::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .score-big {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--amber-dark);
+    position: relative;
+    z-index: 1;
+  }
+  .score-sub {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+  }
+  .score-desc { font-size: 13px; color: var(--text-muted); }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+  .score-metric {
+    background: var(--amber-pale);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .metric-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--amber-dark);
+  }
+  .metric-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Review block ── */
+  .review-block { margin-top: 1rem; }
+  .review-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-sec);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .review-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 12px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 7px;
+    font-size: 13px;
+    line-height: 1.55;
+    border: 1px solid transparent;
+  }
+  .review-item.bad {
+    background: var(--error-bg);
+    border-color: var(--error-bdr);
+  }
+  .review-item.ok {
+    background: var(--success-bg);
+    border-color: var(--success-bdr);
+  }
+  .ri-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-style: normal;
+  }
+  .review-item.bad .ri-icon { background: var(--error); color: #fff; }
+  .review-item.ok  .ri-icon { background: var(--success); color: #fff; }
+  .ri-text { color: var(--text-main); font-weight: 500; }
+  .ri-tip  { color: var(--text-muted); font-size: 12px; margin-top: 3px; }
+
+  .all-correct {
+    text-align: center;
+    padding: 20px;
+    background: var(--success-bg);
+    border: 1px solid var(--success-bdr);
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--success);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .page-header { padding: 1.25rem 1rem 3rem; }
+    .header-title { font-size: 18px; }
+    .card { padding: 1rem; border-radius: var(--radius-md); }
+    .score-big { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-inner">
+    <div class="header-badge"><span>📚</span> Элсэлтийн шалгалт</div>
+    <div class="header-title">2025 Англи хэлний шалгалт</div>
+    <div class="header-sub">47 асуулт · Grammar · Vocabulary · Communication · Reading</div>
+  </div>
+</div>
+
+<div class="main-wrap" id="app">
+
+  <!-- TEST VIEW -->
+  <div class="card" id="test-view">
+    <div class="progress-area">
+      <div class="progress-row">
+        <span class="progress-label">Явц</span>
+        <span class="progress-counter" id="counter">Асуулт 1 / 47</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog" style="width:0%"></div>
+      </div>
+    </div>
+    <div id="q-container"></div>
+    <div class="nav-btns">
+      <button class="btn" id="prev-btn" onclick="goTo(cur-1)">← Өмнөх</button>
+      <button class="btn" id="next-btn" onclick="goTo(cur+1)">Дараах →</button>
+      <button class="btn primary" id="submit-btn" onclick="submitTest()" style="display:none">Дуусгах ✓</button>
+    </div>
+  </div>
+
+  <!-- SCORE VIEW -->
+  <div class="card score-card" id="score-view">
+    <div class="score-hero">
+      <div class="score-ring" id="score-ring">
+        <span class="score-big" id="sc-pct">0%</span>
+      </div>
+      <div class="score-sub" id="sc-grade"></div>
+      <div class="score-desc" id="sc-sub"></div>
+    </div>
+    <div class="score-grid">
+      <div class="score-metric"><div class="metric-num" id="sc-correct">0</div><div class="metric-lbl">Зөв хариулт</div></div>
+      <div class="score-metric"><div class="metric-num" id="sc-wrong">0</div><div class="metric-lbl">Буруу хариулт</div></div>
+      <div class="score-metric"><div class="metric-num" id="sc-skip">0</div><div class="metric-lbl">Хариулаагүй</div></div>
+      <div class="score-metric"><div class="metric-num" id="sc-score">0</div><div class="metric-lbl">Нийт оноо</div></div>
+    </div>
+    <div class="review-block" id="review"></div>
+    <div class="nav-btns" style="justify-content:center;margin-top:1.25rem">
+      <button class="btn primary" onclick="restartTest()">↺ Дахин эхлэх</button>
+      <button class="btn" onclick="showReview()">Алдаагаа харах ↗</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const Q=[
+{s:"Section 1 — Grammar",n:1,q:"___ is becoming increasingly popular among young people lately.",opts:["Vegetable","Vegetarianism","Vegetarian","Vegetate","Vegetation"],ans:1,tip:"Субьект болох нэр үг хэрэгтэй. 'Vegetarianism' = ногоон хоолны үзэл баримтлал гэсэн нэр үг."},
+{s:"Section 1 — Grammar",n:2,q:"Unfortunately, she had _________ friends for help.",opts:["little","a few","few","a little","much"],ans:2,tip:"'Friends' тооллогдох нэр үг тул 'few' (цөөн) хэрэглэнэ. 'Little' тооллогдохгүй нэр үгтэй хэрэглэгддэг."},
+{s:"Section 1 — Grammar",n:3,q:"They ________ leave at 11 o'clock last night because the last bus went at 11.20.",opts:["don't have to","must","have to","had to","need"],ans:3,tip:"Өнгөрсөн цагт 'зайлшгүй ёстой байсан' = 'had to'. 'Must' зөвхөн одоогийн цагт."},
+{s:"Section 1 — Grammar",n:4,q:"This is the bank _________ was robbed yesterday.",opts:["whom","who","whose","where","which"],ans:4,tip:"'The bank' нь байгууллага (юм) тул 'which' хэрэглэнэ."},
+{s:"Section 1 — Grammar",n:5,q:"Would you mind not __________ the radio until I've finished with this phone call?",opts:["to turn on","turning on","to be turning on","turn on","to be turned on"],ans:1,tip:"'Would you mind not + gerund (-ing)' бүтэц. 'Turning on' = зөв."},
+{s:"Section 1 — Grammar",n:6,q:"I occasionally go to the gym but I should go ________ than I do.",opts:["the most frequent","frequent","more frequently","more frequent","frequently"],ans:2,tip:"Харьцуулах зэрэг + дайвар үг = 'more frequently'."},
+{s:"Section 1 — Grammar",n:7,q:"My boss complained __________ my arriving late last week.",opts:["for","of","on","in","about"],ans:4,tip:"'Complain about' — тогтмол хэллэг."},
+{s:"Section 1 — Grammar",n:8,q:"Draughts _____ not a complicated game.",opts:["have","are","were","is","has"],ans:3,tip:"'Draughts' (шашны тоглоом) — олон тооны хэлбэртэй ч нэг тоглоомыг илэрхийлдэг тул ганц тооны 'is'."},
+{s:"Section 1 — Grammar",n:9,q:"The older he gets, ______ he becomes.",opts:["the wiser","more wiser","the wisest","wiser","wisest"],ans:0,tip:"'The + харьцуулах зэрэг..., the + харьцуулах зэрэг' бүтэц."},
+{s:"Section 1 — Grammar",n:10,q:"If the questions _______ too difficult, we _______ them.",opts:["are/would answer","hadn't been/would have answered","haven't been/will be answered","have/would have answered","hadn't been/wouldn't have answered"],ans:0,tip:"2-р нөхцөлт: 'If + одоогийн цаг, would + үйл үг'."},
+{s:"Section 1 — Grammar",n:11,q:"Everyone thought she would accept a new job ________ it was difficult.",opts:["in spite of","despite","even though","moreover","however"],ans:2,tip:"'Even though' = бүлэг өгүүлбэрийн өмнө орох зөвшилцөх холбоос. 'Despite/in spite of' нэр үгийн өмнө ордог."},
+{s:"Section 1 — Grammar",n:12,q:"The students' problems _____________ by the survey.",opts:["will have revealed","have revealed","are have revealed","haven't been revealed","hasn't been revealed"],ans:3,tip:"Олон тоо субьект + идэвхгүй төлөв + үгүйсгэл = 'haven't been revealed'."},
+{s:"Section 1 — Grammar",n:13,q:'Jennifer said, "I\'m going to work in the space exploration next year."',opts:["Jennifer said she was going to work in the space exploration the following year.","Jennifer said I was going to work in the space exploration the following year.","Jennifer said she was going to work in the space exploration a year later.","Jennifer said I was going to work in the space exploration next year.","Jennifer said she is going to work in the space exploration the following year."],ans:0,tip:"Шууд бус яриа: 'I'→'she', 'next year'→'the following year', 'am going'→'was going'."},
+{s:"Section 1 — Grammar (алдаа олох)",n:14,q:"Five-credits-hour courses are approved for the student's work in the major field of interest. Алдаатай хэсгийг ол:",opts:["five-credits-hour","are approved","student's","the major","of interest"],ans:0,tip:"Нийлмэл тэмдэг нэрд тоо ганц тооны хэлбэртэй байна: 'five-credit-hour' байх ёстой."},
+{s:"Section 1 — Grammar (алдаа олох)",n:15,q:"Until the 1400s, most books and texts were producing by scribes who copied them by hand. Алдаатай хэсгийг ол:",opts:["most books","producing","by scribes","copied","by hand"],ans:1,tip:"Идэвхгүй байдал шаардлагатай: 'were producing' → 'were produced'."},
+{s:"Section 1 — Grammar (алдаа олох)",n:16,q:"Some individuals see the issue of smoking as a matter of personal freedom or choices. Алдаатай хэсгийг ол:",opts:["individuals","smoking","a matter","freedom","choices"],ans:4,tip:"'Freedom' болон 'choice' зэрэгцэн орсон тул 'choice' (ганц тоо) байх ёстой."},
+{s:"Section 2 — Vocabulary",n:17,q:"Which item is made from cotton?",opts:["a raincoat","a shirt","a wristband","nylons","a jumper"],ans:1,tip:"Цамц (shirt) хөвөн даавуугаар хийгддэг."},
+{s:"Section 2 — Vocabulary",n:18,q:"A young horse is called? A ________ .",opts:["fawn","kid","cub","lamb","foal"],ans:4,tip:"Морины унага = 'foal'. fawn=маралын унага, kid=ямааны унага, lamb=хурга."},
+{s:"Section 2 — Vocabulary",n:19,q:"A _______ is a part of the building where a vehicle is kept.",opts:["garage","patio","garden","shade","concrete"],ans:0,tip:"Машин хадгалах өрөө/байшин = 'garage'."},
+{s:"Section 2 — Vocabulary",n:20,q:"Name the means of transport the front part of which is a cockpit.",opts:["coach","aircraft","caravan","train","ferry"],ans:1,tip:"Нисэх онгоцны урд хэсгийг 'cockpit' (нисгэгчийн кабин) гэнэ."},
+{s:"Section 2 — Vocabulary",n:21,q:"A _______ uses a computer or smartphone to commit crimes.",opts:["kidnapper","fraudster","vandal","mugger","cybercriminal"],ans:4,tip:"Компьютер ашиглан гэмт хэрэг үйлдэгч = 'cybercriminal'."},
+{s:"Section 2 — Vocabulary",n:22,q:"As soon as Lydia and I met, we knew we were going to get ________ well.",opts:["up","(a) round","at","on","in"],ans:3,tip:"'Get on well with' = хэн нэгэнтэй сайн харилцаатай байх."},
+{s:"Section 2 — Vocabulary",n:23,q:"It was sunny and hot. Ямар мэдэгдэл нийцэх вэ?",opts:["There was a bit of drizzle.","There were a few sunny showers.","It was very overcast.","There was quite a breeze.","We had a bit of heat wave."],ans:4,tip:"Нарлаг, халуун = 'heat wave' (халуун давалгаа)."},
+{s:"Section 2 — Vocabulary",n:24,q:"It's so easy to get around. Public transport is excellent – it's cheap and __________ .",opts:["useful","efficient","cosmopolitan","stressful","crowded"],ans:1,tip:"Хямд + үр ашигтай = 'efficient'."},
+{s:"Section 2 — Vocabulary",n:25,q:"They won two nil. 'Nil' ямар утгатай вэ?",opts:["year somebody was born","the temperature","a telephone number","the score in a tennis match","the result of the football match"],ans:4,tip:"'Two nil' (2:0) = хөлбөмбөгийн тоо дүн. 'Nil' = хөлбөмбөгт тэг оноо."},
+{s:"Section 2 — Vocabulary (Fill in)",n:26,q:"Ron was arrested by the police, who ____________ him of being involved in a robbery.",opts:["suspected","heard","questioned","charged","convicted"],ans:0,tip:"'Suspect someone of' = хэн нэгнийг ямар нэг зүйлд сэжиглэх."},
+{s:"Section 2 — Vocabulary (Fill in)",n:27,q:"He had been __________ previously of petty crime.",opts:["suspected","heard","questioned","charged","convicted"],ans:4,tip:"'Be convicted of' = ял шийтгэгдэх, буруутгагдах."},
+{s:"Section 2 — Vocabulary (Fill in)",n:28,q:"The police __________ him for several hours.",opts:["suspected","heard","questioned","charged","convicted"],ans:2,tip:"'Question someone' = байцаах, мөрдөн шалгах."},
+{s:"Section 2 — Vocabulary (Fill in)",n:29,q:"The police finally __________ him with robbery.",opts:["suspected","heard","questioned","charged","convicted"],ans:3,tip:"'Charge someone with' = яллагдагчаар татах."},
+{s:"Section 2 — Vocabulary (Fill in)",n:30,q:"His case would be __________ in court the following month.",opts:["suspected","heard","questioned","charged","convicted"],ans:1,tip:"'Case would be heard' = хэргийг шүүн хэлэлцэх — хууль зүйн тогтмол хэллэг."},
+{s:"Section 2 — Vocabulary (Phrasal Verbs)",n:31,q:"'To take off' means 'to remove something from a surface' — алинд нь?",opts:["Take off your shoes. You're getting mud on the carpet.","You need to take the old wax off the floor before you wax it again.","Our plane took off an hour late because of the snow.","If this business takes off, we could make a lot of money.","Alfonso always takes the skin off chicken before he cooks it."],ans:1,tip:"B = гадаргуугаас (шалнаас) лав арилгах. A=гутал тайлах, C=онгоц хөөрөх, D=бизнес өргөжих."},
+{s:"Section 2 — Vocabulary (Phrasal Verbs)",n:32,q:"I think he has the flu because you don't usually throw ___________ when you have a cold.",opts:["back","out","on","off","up"],ans:4,tip:"'Throw up' = бөөлжих."},
+{s:"Section 2 — Vocabulary (Phrasal Verbs)",n:33,q:"I'm sorry to cancel, but I just don't _________ up to going dancing today.",opts:["look","feel","take","get","bring"],ans:1,tip:"'Feel up to doing something' = ямар нэг зүйл хийх хүч, эрч байхгүй байх."},
+{s:"Section 3 — Communication",n:34,q:"Man: What seems to be the problem, ma'am? Woman: This sink is clogged up and the faucet is dripping. What kind of work does the man probably do?",opts:["He's a driver.","He's a mechanic.","He's an engineer.","He's a plumber.","He's an electrician."],ans:3,tip:"Ус татуурга бөглөрсөн, цорго дусалж байна = дамжуурчны (plumber) ажил."},
+{s:"Section 3 — Communication",n:35,q:"Woman: Where can I find the course books for Spanish 101? Man: They're in aisle 3, under languages. Where is this conversation taking place?",opts:["In a supermarket.","In a bookstore.","In a library.","At a travel agency.","In a hospital."],ans:1,tip:"'Course books', 'aisle', 'languages' хэсэг = ном дэлгүүр."},
+{s:"Section 3 — Communication",n:36,q:"Man: Did I miss anything while I was buying the hot dogs and sodas? Woman: Yes, our team scored a touchdown! Where is this conversation taking place?",opts:["At a restaurant","At a shopping center.","At a café.","At the circus.","At a stadium."],ans:4,tip:"'Hot dogs', 'sodas', 'touchdown' = Америкийн хөл бөмбөгний стадион."},
+{s:"Section 3 — Communication",n:37,q:"Woman: Do you get pay raises where you work? Man: Yes, but they are few and far between. What does the man mean?",opts:["He has to go far to get a raise.","He gets lots of raises at his job.","There are no raises given where he works.","They don't give raises very often where he works.","He has already got pay raises."],ans:3,tip:"'Few and far between' = маш ховор, цөөхөн."},
+{s:"Section 3 — Communication",n:38,q:"Woman: I should tell them they need more decorations. Man: They never listen to anyone, so save your breath. What does the man want the woman to do?",opts:["Hold her breath","Not say anything.","Make some suggestions.","Propose an idea.","Listen to the others."],ans:1,tip:"'Save your breath' = дэмий хэлэх хэрэггүй, чимээгүй байх."},
+{s:"Section 4 — Reading",n:39,q:"What is the main topic of this narcolepsy passage?",opts:["Development of narcolepsy","Reliable cure for narcolepsy","Aspects of narcolepsy","Causes of narcolepsy","Treatment of narcolepsy"],ans:2,tip:"Текст нарколепсийн шинж, тоо, шалтгаан, эмчилгээ зэрэг олон талыг хамарсан."},
+{s:"Section 4 — Reading",n:40,q:"Narcolepsy is a condition in which people...",opts:["have unusual brain chemistry","doze after eating a meal","doze at unusual times","only sleep in the day","feel drowsy during the lunch break"],ans:2,tip:"Нарколепсийн гол шинж = хэвийн бус нөхцөлд унтан задрах."},
+{s:"Section 4 — Reading",n:41,q:"A person is most likely to be narcoleptic if he or she falls asleep while...",opts:["taking a long car trip","reading a book","watching a movie","lying on the beach","eating at a restaurant"],ans:4,tip:"Идэж байхдаа унтах нь хамгийн хэвийн бус нөхцөл — нарколепсийн тодорхой шинж."},
+{s:"Section 4 — Reading",n:42,q:"The passage implies that narcolepsy...",opts:["can be a serious disorder","is an imaginary problem","is a rare case","is easily cured","is really laziness"],ans:0,tip:"Жолоодохдоо унтан задарч болзошгүй — энэ нь хүнд хор уршигтай байж болно."},
+{s:"Section 4 — Reading",n:43,q:"The word 'alert' in the passage is closest in meaning to...",opts:["alarmed","tired","drowsy","informed","awake"],ans:4,tip:"'Alert' = 'awake' — сэрүүн, сэрэмжтэй байх."},
+{s:"Section 4 — Reading",n:44,q:"According to the passage, it can be said that...",opts:["the number of narcoleptics is unknown","most people are narcoleptics sometimes","narcoleptics are drug addicts","narcolepsy is a very rare condition","narcolepsy can easily be cured"],ans:0,tip:"'There are no reliable data showing how many people have narcolepsy' гэж тодорхой бичсэн."},
+{s:"Section 4 — Reading (Fill blanks)",n:45,q:"...but when they start physical work (45) _____ . (Sweating text about Nigerians)",opts:["so as to help evaporation","for salt concentrations in sweat to decrease","they start sweating more quickly","to aid the loss of salt"],ans:2,tip:"Биеийн дасалт болсон учир хурдан хөлсдөж эхэлдэг."},
+{s:"Section 4 — Reading (Fill blanks)",n:46,q:"Acclimatization to heat encourages a tendency (46) __________ .",opts:["so as to help evaporation","for salt concentrations in sweat to decrease","they start sweating more quickly","to aid the loss of salt"],ans:1,tip:"Дулаанд дасах нь хөлсний давсны агууламж буурах хандлагыг бий болгодог."},
+{s:"Section 4 — Reading",n:47,q:"What is the most likely reason an owner of a valuable painting might want to exhibit a copy instead of the original?",opts:["Because they attract more potential buyers","Because they need to trick the experts","Because they want to encourage talented artists","Because they enjoy buying fake paintings","Because they hope to foil would-be thieves"],ans:4,tip:"Хуулбар үзүүлж эх зургийг хамгаалах — хулгайч нарын анхаарлыг хуулбарт татах."}
+];
+
+let cur=0, answers=new Array(Q.length).fill(null), submitted=false;
+
+function render(){
+  const q=Q[cur];
+  const prog=Math.round(((cur+1)/Q.length)*100);
+  document.getElementById('prog').style.width=prog+'%';
+  document.getElementById('counter').textContent='Асуулт '+(cur+1)+' / '+Q.length;
+  const letters=['A','B','C','D','E'];
+  let html='<div class="section-title">'+q.s+'</div>';
+  html+='<div class="q-block">';
+  html+='<div class="q-text"><span class="q-num">'+q.n+'</span>'+q.q+'</div>';
+  html+='<div class="options">';
+  q.opts.forEach((o,i)=>{
+    let cls='opt';
+    if(submitted){
+      if(i===q.ans) cls+=' show-correct';
+      else if(answers[cur]===i && i!==q.ans) cls+=' wrong';
+    } else {
+      if(answers[cur]===i) cls+=' selected';
+    }
+    html+='<div class="'+cls+'" onclick="'+(submitted?'':'pick('+i+')')+'" style="'+(submitted?'cursor:default;':'')+'">'+
+      '<span class="opt-letter">'+letters[i]+'</span>'+
+      '<span class="opt-label">'+o+'</span>'+
+    '</div>';
+  });
+  html+='</div>';
+  if(submitted){
+    html+='<div class="explanation show"><strong>💡 Тайлбар:</strong> '+q.tip+'</div>';
+  }
+  html+='</div>';
+  document.getElementById('q-container').innerHTML=html;
+  document.getElementById('prev-btn').style.display=cur>0?'':'none';
+  document.getElementById('next-btn').style.display=cur<Q.length-1?'':'none';
+  document.getElementById('submit-btn').style.display=(cur===Q.length-1&&!submitted)?'':'none';
+  if(submitted&&cur===Q.length-1) document.getElementById('submit-btn').style.display='none';
+}
+
+function pick(i){
+  if(submitted) return;
+  answers[cur]=i;
+  render();
+  if(cur<Q.length-1) setTimeout(()=>goTo(cur+1),300);
+}
+
+function goTo(i){
+  if(i<0||i>=Q.length) return;
+  cur=i;
+  render();
+}
+
+function submitTest(){
+  submitted=true;
+  document.getElementById('test-view').style.display='none';
+  const scoreView=document.getElementById('score-view');
+  scoreView.style.display='block';
+  let correct=0,wrong=0,skip=0,totalScore=0;
+  Q.forEach((q,i)=>{
+    if(answers[i]===null) skip++;
+    else if(answers[i]===q.ans){correct++;totalScore+=1;}
+    else wrong++;
+  });
+  const pct=Math.round((correct/Q.length)*100);
+  document.getElementById('sc-pct').textContent=pct+'%';
+  // animate conic ring
+  document.getElementById('score-ring').style.setProperty('--pct', pct+'%');
+  let grade=pct>=90?'🏆 Маш сайн!':pct>=75?'⭐ Сайн!':pct>=60?'📗 Дунд зэрэг':pct>=40?'📙 Хангалтгүй':'📕 Дахин давтан суралц';
+  document.getElementById('sc-grade').textContent=grade;
+  document.getElementById('sc-sub').textContent=correct+' / '+Q.length+' зөв хариулсан';
+  document.getElementById('sc-correct').textContent=correct;
+  document.getElementById('sc-wrong').textContent=wrong;
+  document.getElementById('sc-skip').textContent=skip;
+  document.getElementById('sc-score').textContent=totalScore;
+  const rev=document.getElementById('review');
+  let rhtml='<div class="review-heading">Алдаасан асуултууд</div>';
+  let hasWrong=false;
+  Q.forEach((q,i)=>{
+    if(answers[i]!==q.ans){
+      hasWrong=true;
+      const letters=['A','B','C','D','E'];
+      const yourAns=answers[i]!==null?letters[answers[i]]+') '+q.opts[answers[i]]:'Хариулаагүй';
+      const corrAns=letters[q.ans]+') '+q.opts[q.ans];
+      rhtml+='<div class="review-item bad">'+
+        '<span class="ri-icon">✕</span>'+
+        '<div><div class="ri-text"><strong>'+q.n+'.</strong> '+q.q.substring(0,60)+(q.q.length>60?'...':'')+'</div>'+
+        '<div class="ri-tip">Таны хариулт: '+yourAns+' &nbsp;|&nbsp; Зөв: '+corrAns+'</div>'+
+        '<div class="ri-tip">'+q.tip+'</div></div>'+
+      '</div>';
+    }
+  });
+  if(!hasWrong) rhtml+='<div class="all-correct">✓ Бүх асуултыг зөв хариуллаа!</div>';
+  rev.innerHTML=rhtml;
+}
+
+function restartTest(){
+  cur=0; answers=new Array(Q.length).fill(null); submitted=false;
+  document.getElementById('score-view').style.display='none';
+  document.getElementById('test-view').style.display='block';
+  render();
+}
+
+function showReview(){
+  submitted=true;
+  document.getElementById('score-view').style.display='none';
+  document.getElementById('test-view').style.display='block';
+  cur=0; render();
+}
+
+render();
+</script>
+</body>
+</html>
