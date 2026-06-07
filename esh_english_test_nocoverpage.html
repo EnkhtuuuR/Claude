@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ЭШ Англи Хэл — Түвшин Сорих Материал</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --a:#E8821A;--ad:#C46A0D;--al:#F5A340;
+  --ap:#FEF3E2;--at:#FDF0D5;--bo:#F0D9B5;--bs:#FAE8C8;
+  --t1:#2D1F0A;--t2:#7A5C32;--t3:#A8845A;
+  --g:#10B981;--gd:#059669;
+  --ok:#5A9E3A;--okb:#EEF7E6;--okr:#7DC654;
+  --er:#D44B3A;--erb:#FDF0EE;--err:#E87A6A;
+  --ww:#FFFCF7;
+}
+html,body{
+  font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  background:var(--ww);color:var(--t1);
+  -webkit-text-size-adjust:100%;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ══ TEST VIEW ══ */
+#test{display:block}
+.view{display:none}
+
+/* ══ HEADER ══ */
+.hdr{
+  background:linear-gradient(135deg,#C46A0D 0%,#E8821A 55%,#F5A340 100%);
+  padding:calc(env(safe-area-inset-top,0px) + 14px) 14px 20px;
+}
+.hdr-inner{max-width:700px;margin:0 auto}
+.hdr-top{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;-webkit-justify-content:space-between;justify-content:space-between;gap:10px;margin-bottom:10px}
+.hdr-title{font-size:16px;font-weight:700;color:#fff;line-height:1.3}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,.8);margin-top:2px}
+.hdr-chips{display:-webkit-flex;display:flex;gap:6px;-webkit-flex-wrap:wrap;flex-wrap:wrap}
+.hdr-chip{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:3px 9px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
+
+/* ══ PROGRESS BAR (inside header) ══ */
+.hdr-prog{margin-top:8px}
+.hdr-prog-row{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;margin-bottom:5px}
+.hdr-prog-l{font-size:10px;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.05em}
+.hdr-prog-c{font-size:11px;font-weight:700;color:#fff}
+.hdr-prog-track{height:5px;background:rgba(255,255,255,.25);border-radius:5px;overflow:hidden}
+.hdr-prog-fill{height:100%;background:#fff;border-radius:5px;transition:width .3s ease}
+
+/* ══ WRAP ══ */
+.wrap{max-width:700px;margin:-12px auto 32px;padding:0 11px calc(env(safe-area-inset-bottom,0px) + 32px)}
+.card{background:#fff;border:1px solid var(--bo);border-radius:15px;padding:14px;box-shadow:0 4px 14px rgba(180,100,20,.1)}
+
+/* ══ SECTION LABEL ══ */
+.sec{display:inline-block;background:var(--ap);border:1px solid var(--bo);border-radius:50px;padding:3px 10px;font-size:9px;font-weight:700;color:var(--ad);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+
+/* ══ CONTEXT ══ */
+.ctx{background:var(--ap);border:1px solid var(--bo);border-left:3px solid var(--a);border-radius:9px;padding:11px 12px;margin-bottom:11px;font-size:13px;color:var(--t2);line-height:1.7;white-space:pre-wrap;max-height:190px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ctx-l{font-size:9px;font-weight:700;color:var(--ad);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+
+/* ══ QUESTION ══ */
+.qb{background:var(--ww);border:1px solid var(--bs);border-radius:12px;padding:14px;margin-bottom:10px}
+.qt{font-size:15px;color:var(--t1);line-height:1.7;margin-bottom:12px;white-space:pre-line}
+.qn{display:inline-flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;width:24px;height:24px;background:linear-gradient(135deg,var(--ad),var(--a));color:#fff;border-radius:50%;font-size:11px;font-weight:700;margin-right:6px;vertical-align:middle;flex-shrink:0}
+
+/* ══ OPTIONS ══ */
+.opts{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:8px}
+.opt{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:10px;padding:12px 11px;background:#fff;border:1.5px solid var(--bo);border-radius:9px;-webkit-tap-highlight-color:rgba(232,130,26,.12);touch-action:manipulation;cursor:pointer;min-height:48px;width:100%;-webkit-user-select:none;user-select:none;position:relative}
+.opt input[type=radio]{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.opt.sel{background:var(--at);border-color:var(--a)}
+.opt.sel .ol{background:var(--a);color:#fff;border-color:var(--a)}
+.opt.cor{background:var(--okb);border-color:var(--okr)}
+.opt.cor .ol{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.wrn{background:var(--erb);border-color:var(--err)}
+.opt.wrn .ol{background:var(--er);color:#fff;border-color:var(--er)}
+.ol{display:inline-flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;min-width:23px;height:23px;background:var(--ap);border:1.5px solid var(--bo);border-radius:5px;font-size:12px;font-weight:700;color:var(--t2);flex-shrink:0;margin-top:1px}
+.ot{font-size:14px;color:var(--t1);line-height:1.5}
+.expl{margin-top:10px;padding:11px 12px;background:var(--ap);border:1px solid var(--bo);border-left:3px solid var(--a);border-radius:9px;font-size:13px;color:var(--t2);line-height:1.6}
+
+/* ══ NAV ══ */
+.nav{display:-webkit-flex;display:flex;gap:8px;margin-top:12px}
+.btn{-webkit-flex:1;flex:1;padding:14px 8px;border:1.5px solid var(--bo);border-radius:9px;background:#fff;cursor:pointer;font-size:14px;font-weight:600;color:var(--t2);font-family:inherit;text-align:center;-webkit-appearance:none;-webkit-tap-highlight-color:rgba(0,0,0,0);touch-action:manipulation;min-height:48px}
+.btn:active{opacity:.8}
+.btn.am{background:linear-gradient(135deg,var(--ad),var(--a));border-color:transparent;color:#fff}
+.btn.gn{background:linear-gradient(135deg,var(--gd),var(--g));border-color:transparent;color:#fff}
+
+/* ══ SCORE ══ */
+.sh{text-align:center;padding:16px 0 12px;border-bottom:1px solid var(--bs);margin-bottom:14px}
+.rw{display:inline-flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;position:relative;width:110px;height:110px;margin-bottom:10px}
+.rs{position:absolute;inset:0;transform:rotate(-90deg)}
+.rbg{fill:none;stroke:#F0D9B5;stroke-width:10}
+.rfg{fill:none;stroke:var(--a);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.sp{font-size:26px;font-weight:800;color:var(--ad);position:relative;z-index:1}
+.sg{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.sd{font-size:13px;color:var(--t3)}
+.sg2{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.sm{-webkit-flex:1 1 110px;flex:1 1 110px;background:var(--ap);border:1px solid var(--bo);border-radius:9px;padding:11px;text-align:center}
+.sn{font-size:22px;font-weight:800;color:var(--ad)}
+.sl{font-size:9px;font-weight:700;color:var(--t3);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ══ REVIEW ══ */
+.ri{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:9px;padding:11px;border-radius:9px;margin-bottom:8px;font-size:13px;line-height:1.5;border:1px solid transparent}
+.ri.bad{background:var(--erb);border-color:var(--err)}
+.ri.ok{background:var(--okb);border-color:var(--okr)}
+.ric{width:20px;height:20px;border-radius:50%;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
+.ri.bad .ric{background:var(--er);color:#fff}
+.ri.ok .ric{background:var(--ok);color:#fff}
+.riq{color:var(--t1);font-weight:500}
+.ria{font-size:12px;margin-top:3px}
+.ria .c{color:var(--ok);font-weight:600}
+.ria .w{color:var(--er)}
+.rit{color:var(--t3);font-size:12px;margin-top:3px}
+.allok{text-align:center;padding:20px;background:var(--okb);border:1px solid var(--okr);border-radius:12px;font-size:15px;font-weight:600;color:var(--ok)}
+
+@media(max-width:400px){
+  .hdr-title{font-size:14px}
+  .qt{font-size:14px}
+  .ot{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TEST ══ -->
+<div id="test">
+  <div class="hdr">
+    <div class="hdr-inner">
+      <div class="hdr-top">
+        <div>
+          <div class="hdr-title">ЭШ Англи Хэл — Түвшин сорих материал</div>
+          <div class="hdr-sub">Grammar · Vocabulary · Communication · Reading · Part II</div>
+        </div>
+        <div class="hdr-chips">
+          <div class="hdr-chip">63 асуулт</div>
+          <div class="hdr-chip">200–800 оноо</div>
+        </div>
+      </div>
+      <div class="hdr-prog">
+        <div class="hdr-prog-row">
+          <span class="hdr-prog-l">Явц</span>
+          <span class="hdr-prog-c" id="cnt">1 / 63</span>
+        </div>
+        <div class="hdr-prog-track"><div class="hdr-prog-fill" id="pf" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="card">
+      <div id="qa"></div>
+      <div class="nav">
+        <button class="btn" id="pb" type="button">← Өмнөх</button>
+        <button class="btn" id="nb" type="button">Дараах →</button>
+        <button class="btn gn" id="db" type="button" style="display:none">Дуусгах ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCORE ══ -->
+<div id="score" class="view">
+  <div class="hdr">
+    <div class="hdr-inner">
+      <div class="hdr-title">ЭШ Англи Хэл — Түвшин сорих материал</div>
+      <div class="hdr-sub">Шалгалт дууссан · Үр дүн</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="card">
+      <div class="sh">
+        <div class="rw">
+          <svg class="rs" viewBox="0 0 110 110">
+            <circle class="rbg" cx="55" cy="55" r="46"/>
+            <circle class="rfg" id="rfg" cx="55" cy="55" r="46" stroke-dasharray="289" stroke-dashoffset="289"/>
+          </svg>
+          <span class="sp" id="spct">0%</span>
+        </div>
+        <div class="sg" id="sgr"></div>
+        <div class="sd" id="sds"></div>
+      </div>
+      <div class="sg2">
+        <div class="sm"><div class="sn" id="scor">0</div><div class="sl">Зөв хариулт</div></div>
+        <div class="sm"><div class="sn" id="swrn">0</div><div class="sl">Буруу хариулт</div></div>
+        <div class="sm"><div class="sn" id="sskp">0</div><div class="sl">Хариулаагүй</div></div>
+        <div class="sm"><div class="sn" id="stot">0</div><div class="sl">Нийт оноо</div></div>
+      </div>
+      <div class="nav" style="-webkit-justify-content:center;justify-content:center">
+        <button class="btn am" id="rb" type="button">↺ Дахин эхлэх</button>
+        <button class="btn" id="rvb" type="button">Алдаагаа харах →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ REVIEW ══ -->
+<div id="review" class="view">
+  <div class="hdr">
+    <div class="hdr-inner">
+      <div class="hdr-title">Алдааны шинжилгээ</div>
+      <div class="hdr-sub">Монгол хэлээр тайлбартай</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="card">
+      <div id="rvc"></div>
+      <div class="nav" style="-webkit-justify-content:center;justify-content:center;margin-top:16px">
+        <button class="btn am" id="rb2" type="button">↺ Дахин эхлэх</button>
+        <button class="btn" id="bk" type="button">← Үр дүн рүү буцах</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var Q=[
+{s:"Section 1 — Grammar",n:1,q:"I don't mind __________ a cat in my house so long as it doesn't smell.",opts:["had","have","to have","having","have to"],ans:3,tip:"'Don't mind + gerund (-ing)' бүтэц хэрэглэнэ. 'I don't mind doing something' = ямар нэг зүйл хийхэд санаа зовохгүй байх."},
+{s:"Section 1 — Grammar",n:2,q:"Let's go and have a cup of coffee. We have _______ time before the train leaves.",opts:["few","no","a little","little","any"],ans:2,tip:"'Time' тооллогдохгүй нэр үг тул 'a little' (бага зэрэг) хэрэглэнэ. 'Few' тооллогдох нэр үгтэй хэрэглэгддэг."},
+{s:"Section 1 — Grammar",n:3,q:"The house was empty for a month _________ my neighbors moved out.",opts:["while","until","during","after","before"],ans:3,tip:"'After' = ...дараа. Хөрш нүүсний ДАРАА байшин хоосон байсан. 'Before' буруу, учир нь нүүхийн өмнө хоосон биш байсан."},
+{s:"Section 1 — Grammar",n:5,q:"Eventually you'll __________ the smells in the laboratory.",opts:["got use to","get use to","used to","got used to","get used to"],ans:4,tip:"'Get used to + noun/gerund' = ямар нэг зүйлд дасах. Ирээдүйн цаг тул 'will get used to' зөв."},
+{s:"Section 1 — Grammar",n:6,q:"I regret __________ you that you are not selected for the interview.",opts:["told","telling","tell","having told","to tell"],ans:4,tip:"'Regret + to infinitive' = муу мэдээ хэлэхдээ харамсах (одоо үйлдэж буй). 'Regret + -ing' = өнгөрсөн үйлдлийг харамсах."},
+{s:"Section 1 — Grammar",n:7,q:"Your apartment is old and small. You would like to live in a nice big apartment.\nYou say: I wish I __________ in a nice big apartment.",opts:["would live","were living","had lived","have lived","lived"],ans:4,tip:"'I wish + past simple' = одоогийн бодит бус хүсэл. 'Lived' = зөв хэлбэр."},
+{s:"Section 1 — Grammar",n:8,q:"The boys __________ by the police on their way home.",opts:["have stopped","stopped","had stopped","was stopped","were stopped"],ans:4,tip:"'The boys' олон тоо тул идэвхгүй байдлын олон тооны хэлбэр 'were stopped' хэрэглэнэ."},
+{s:"Section 1 — Grammar",n:9,q:"Direct speech: \"I'm waiting for my English exam result,\" Chimgee said.\nReported speech: Chimgee said (that) __________.",opts:["she is waiting for my English exam result","she has been waiting for her English exam result","she waited for her English exam result","she was waiting for her English exam result","she was waiting for my English exam result"],ans:3,tip:"Шууд бус яриа: 'I' → 'she', 'am waiting' → 'was waiting', 'my' → 'her'. D хариулт зөв."},
+{s:"Section 1 — Grammar",n:10,q:"__________ the room is clean, I don't mind which hotel we stay at.",opts:["Unless","Because of","Provided","So","In spite of"],ans:2,tip:"'Provided (that)' = хэрэв...бол. Нөхцөлт холбоос. 'Provided the room is clean' = өрөө цэвэр бол."},
+{s:"Section 1 — Grammar",n:11,q:"If he __________ too much, he wouldn't have felt sick.",opts:["hadn't been eaten","didn't eat","hasn't eaten","hadn't eaten","wasn't eating"],ans:3,tip:"3-р нөхцөлт: 'If + had + past participle, would + have + past participle'. 'Hadn't eaten' = зөв."},
+{s:"Section 1 — Grammar",n:12,q:"By the time I __________ back to the bathroom, the bath __________.",opts:["got / already overflowed","get / had already overflowed","had got / had already overflowed","got / have already overflowed","got / had already overflowed"],ans:4,tip:"'By the time + past simple, past perfect' бүтэц. 'Got' (энгийн өнгөрсөн) + 'had already overflowed' (өнгөрсөн төгс цаг) = зөв."},
+{s:"Section 1 — Grammar (Алдаа олох)",n:13,q:"Five-credits-hour courses are approved for the student's work in the major field of interest.\nДоогуур зурсан хэсгүүдийн алдааг ол:",opts:["five-credits-hour","are approved","student's","the major","of interest"],ans:0,tip:"Нийлмэл тэмдэг нэрд (compound adjective) тоо ганц тооны хэлбэртэй байна: 'five-credit-hour' байх ёстой — 'credits' биш, 'credit'."},
+{s:"Conversation Exercise",n:14,context:"T: You went to Professor Lee's geography lecture yesterday, didn't you?\nM: Yeah, but I didn't understand very much.\nT: [14] __________ . But don't worry about it, it's only the first one.\nM: [15] __________ .\nT: Anyway, how's your first week going?\nM: Oh, it's just been crazy. I haven't stopped since I got here.\nT: [16] __________ . And it's a huge campus - I keep getting lost!",q:"T-ийн [14] хариултыг сонго: '__________ . But don't worry about it, it's only the first one.'",opts:["Neither did I","Yeah, I suppose so","Yes, so do I","So am I","No, me neither"],ans:0,tip:"M 'didn't understand' гэсэн тул T ч адил ойлгоогүй гэдгийг 'Neither did I' (Би ч бас ойлгоогүй) хэлбэрээр илэрхийлнэ."},
+{s:"Conversation Exercise",n:15,context:"T: Neither did I. But don't worry about it, it's only the first one.\nM: [15] __________ .\nT: Anyway, how's your first week going?",q:"M-ийн [15] хариултыг сонго: '__________ .'",opts:["Neither did I","Yeah, I suppose so","Yes, so do I","So am I","No, me neither"],ans:1,tip:"'Yeah, I suppose so' = тийм ч байж болох, тийм биз дэ — зөвшилцөх зөөлөн хариулт."},
+{s:"Conversation Exercise",n:16,context:"M: Oh, it's just been crazy. I haven't stopped since I got here.\nT: [16] __________ . And it's a huge campus - I keep getting lost!",q:"T-ийн [16] хариултыг сонго: '__________ . And it's a huge campus - I keep getting lost!'",opts:["Neither did I","Yeah, I suppose so","Yes, so do I","So am I","No, me neither"],ans:3,tip:"M 'I haven't stopped' — маш завгүй байна. T 'So am I' = Би ч бас (адилхан завгүй байна) гэсэн утгатай."},
+{s:"Best Answer Exercise",n:17,context:"Steve: Hey, I heard you're looking for a different apartment.\nEllen: Yeah, the place I'm in now is a real dump.\nSteve: It looked okay when I was there.\nEllen: Oh, the boiler keeps breaking and when it does, we lose the heat for several days at a time.\nSteve: Why doesn't the owner replace it?\nEllen: Well, she says it's cheaper to keep fixing it. She's a nice enough person; just sort of stingy. In any case, I'm sick of being cold.",q:"What's wrong with the woman's current apartment?",opts:["The owner is unpleasant.","It's too noisy.","It's not convenient to the university.","The heating system is defective.","She is pleased with her apartment."],ans:3,tip:"Ellen дулаалгын тогоо байнга эвдэрч, хэдэн хоног дулаангүй байдаг гэж хэлсэн. D 'The heating system is defective' (дулаалгын систем эвдэрсэн) = зөв."},
+{s:"Best Answer Exercise",n:18,context:"Steve: Can you get your deposit back if you move?\nEllen: If I give two months' notice, I can get the whole thing back.",q:"What must the woman do to have her deposit returned?",opts:["Lose the heating at the end of the month.","Alert the housing authorities to her problem.","Move to another apartment in the same building.","Leave by the end of the month.","Tell her owner two months in advance that she's moving."],ans:4,tip:"Ellen 'If I give two months' notice' гэж хэлсэн. 'Notice' = урьдчилан мэдэгдэх. E 'Tell her owner two months in advance' = зөв."},
+{s:"Section 2 — Vocabulary",n:19,q:"Which item is made from cotton?",opts:["a raincoat","a shirt","a wristband","nylons","a jumper"],ans:1,tip:"Цамц (shirt) хөвөн (cotton) даавуугаар хийгддэг. Raincoat усны материалаар, nylons синтетик материалаар хийгддэг."},
+{s:"Section 2 — Vocabulary",n:20,q:"A young horse is called? A ________.",opts:["fawn","kid","cub","lamb","foal"],ans:4,tip:"Морины унага = 'foal'. fawn = маралын унага, kid = ямааны унага, cub = баавгайн гүлзэн, lamb = хурга."},
+{s:"Section 2 — Vocabulary",n:21,q:"A _______ is a part of the building where a vehicle is kept.",opts:["garage","patio","garden","shade","concrete"],ans:0,tip:"Машин хадгалах байр = 'garage'. Patio = гадна талбай, garden = цэцэрлэг."},
+{s:"Section 2 — Vocabulary",n:22,q:"A _______ uses a computer or smartphone to commit crimes.",opts:["kidnapper","fraudster","vandal","mugger","cybercriminal"],ans:4,tip:"Компьютер, смартфон ашиглан гэмт хэрэг үйлдэгч = 'cybercriminal'."},
+{s:"Section 2 — Vocabulary",n:23,q:"Teaching English in a lively interesting way increases students' __________ to learn.",opts:["volunteering","tolerance","motivation","diversity","automation"],ans:2,tip:"'Motivation' = сэдэл, хөшүүрэг. Суралцах хүслийг нэмэгдүүлнэ."},
+{s:"Section 2 — Vocabulary",n:27,q:"Regular exercise is good for your body and brain. It _______ your blood with oxygen.",opts:["stores","enriches","influences","processes","produces"],ans:1,tip:"'Enrich' = баяжуулах. 'Enriches your blood with oxygen' = цусыг хүчилтөрөгчөөр баяжуулна."},
+{s:"Section 2 — Vocabulary (Fill in Story)",n:28,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted\n\nA few months ago Ron was arrested by the police.",q:"Ron was arrested by the police, who __________ him of being involved in a robbery at a local post office.",opts:["suspected","heard","questioned","charged","convicted"],ans:0,tip:"'Suspect someone of' = хэн нэгнийг ямар нэг зүйлд сэжиглэх. Баривчлагдахдаа эхлээд сэжиглэгддэг."},
+{s:"Section 2 — Vocabulary (Fill in Story)",n:29,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted",q:"He had been __________ previously of petty crime, but never anything serious.",opts:["suspected","heard","questioned","charged","convicted"],ans:4,tip:"'Be convicted of' = ял шийтгүүлэх, буруутай гэж шүүхэд тогтоогдох."},
+{s:"Section 2 — Vocabulary (Fill in Story)",n:30,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted",q:"The police __________ him for several hours.",opts:["suspected","heard","questioned","charged","convicted"],ans:2,tip:"'Question someone' = байцаах, мөрдөн шалгах. Цагдаа хэдэн цаг байцаасан."},
+{s:"Section 2 — Vocabulary (Fill in Story)",n:31,context:"Word box: A. suspected  B. heard  C. questioned  D. charged  E. convicted",q:"The police finally __________ him with robbery.",opts:["suspected","heard","questioned","charged","convicted"],ans:3,tip:"'Charge someone with' = яллагдагчаар татах, хэрэг үүсгэх."},
+{s:"Section 2 — Vocabulary (Phrasal Verbs)",n:33,q:"In which sentence does 'to take off' mean 'to remove something from a surface'?",opts:["Take off your shoes. You're getting mud on the carpet.","You need to take the old wax off the floor before you wax it again.","Our plane took off an hour late because of the snow.","If this business takes off, we could make a lot of money.","Alfonso always takes the skin off chicken before he cooks it."],ans:1,tip:"B = шалнаас (гадаргуугаас) лав арилгах. A = гутал тайлах, C = онгоц хөөрөх, D = бизнес өргөжих."},
+{s:"Section 2 — Vocabulary (Phrasal Verbs)",n:34,q:"I think he has the flu because you don't usually throw __________ when you have a cold.",opts:["back","out","on","off","up"],ans:4,tip:"'Throw up' = бөөлжих. Томуу (flu) болоход бөөлжиж болох ч жирийн ханиад (cold) болоход бөөлждөггүй."},
+{s:"Section 2 — Vocabulary (Idioms)",n:36,q:"Jake and I lost our jobs yesterday. Now we are in the same boat.\nWhat does 'in the same boat' mean?",opts:["They are in the broken boat.","They have a good situation.","They are in the same bad situation.","They are looking for a job.","They are travelling by boat."],ans:2,tip:"'In the same boat' = адил хэцүү нөхцөлд байх. Хоёулаа ажлаасаа халагдсан тул адил нөхцөлд байна."},
+{s:"Section 2 — Vocabulary (Idioms)",n:37,q:"Chimgee got it in the neck because she forgot to turn off the car light last night.\nWhat happened to Chimgee?",opts:["The long drive hurt her neck.","She was punished for the damage to the car battery.","She forgot to turn off the car light.","Her shirt was open at the neck.","She was punished for the damage to the car light."],ans:1,tip:"'Got it in the neck' = шийтгэл хүлээх (идиом). Гэрлийг унтраагүйгээс батарей дууссан тул B зөв."},
+{s:"Section 2 — Vocabulary (Idioms)",n:38,q:"My girlfriend always acts as if she were born yesterday.\nWhat does 'born yesterday' mean here?",opts:["She was born yesterday.","Her boyfriend doesn't know what she really wants.","She believes that the best way to learn is by experience.","She is naive because she doesn't have much experience in life.","His girlfriend is very thoughtful."],ans:3,tip:"'Born yesterday' = туршлага муутай, амьдрал мэдэхгүй, хамаагүй итгэмтгий. D = зөв."},
+{s:"Section 3 — Communication",n:39,q:"Man: Does Judy prefer saving her money?\nWoman: __________ She loves to buy things.",opts:["Yes, she always saves her money.","Yes, she'd rather save.","No, she wouldn't rather spend her money.","Yes, she prefers saving her money.","No, she'd rather not save."],ans:4,tip:"'She loves to buy things' → мөнгө хэмнэдэггүй гэдэг нь тодорхой. 'No, she'd rather not save' = тийм ээ, хэмнэдэггүй."},
+{s:"Section 3 — Communication",n:40,q:"Girl: I really must be going now.\nBoy: But you've just come. Wouldn't you like to stay for a snack?\nGirl: That's very kind of you, but I mustn't be too late.\nBoy: __________\nGirl: Thanks very much for the party.",opts:["What a pity!","I'd be glad to.","With pleasure.","Sounds great.","What a surprise!"],ans:0,tip:"Охин явахаас татгалзсан тул хөвгүүн харамсалаа илэрхийлнэ. 'What a pity!' = Харамсалтай байна!"},
+{s:"Section 3 — Communication",n:41,q:"Student: Did people there use to be poor?\nTeacher: _________ They used to be rich.",opts:["Yes, they were.","Yes, they did.","No, they didn't.","No, they weren't.","No, people weren't."],ans:2,tip:"'Use to' асуулт/үгүйсгэлд 'did/didn't' туслах үйл үг хэрэглэнэ. 'No, they didn't' = зөв. Тэд баян байсан."},
+{s:"Section 4 — Reading",n:44,context:"THE WRONG GUY!\n\nThe story of Guy Goma is not one of stupidity. A former taxi driver from the French Congo, Mr Goma was at the BBC TV center for an interview, in the hope of becoming an IT assistant. So when a producer came up to him and said, \"Guy Kewney, isn't it? About the IT thing?\" he agreed, because he thought she had just got the wrong pronunciation of his surname.\n\nMr Goma, who had taught himself English after he moved to England four years previously, was rushed into a studio, where he found himself in front of the cameras, having questions thrown at him. How could he know that the man who'd been sitting on a nearby sofa was also called Guy? In fact Guy Kewney was an IT expert, who was waiting to go on live TV to be interviewed about a legal dispute with Apple computers.\n\n\"It all happened so fast,\" Goma told The Sun newspaper. \"I had just signed my name in reception when someone said 'Follow me.' She was walking so fast that I had to jog to keep up with her. Even though a lady put some make-up on me and I was fitted with a microphone, I just thought it was all part of the job interview and when I realized I was on air, what could I do? I just tried to answer the questions and stay calm.\"\n\nViewers reacted with a mixture of delight and sympathy to the key moment when the BBC's Karen Bowerman introduced Goma as \"Guy Kewney, head of newswireless.net!\" Across his expressive face flit a dozen expressions in a second — mainly shock, fear, guilt and embarrassment. However, instead of saying there had been a mistake, he answered three questions before the BBC staff became aware of what had happened.\n\nMr Goma was finally taken to his interview for the IT post, but despite going through such a bad experience he didn't get the job. Nevertheless, Mr Goma is now in demand as a celebrity, since hundreds of thousands of people have now watched his television appearance online.",q:"What is the article about?",opts:["It highlights the importance of clear communication.","It criticizes the BBC for its unprofessionalism.","It explains the difficulties in learning English.","It discusses the job interview process at the BBC.","It describes a humorous mix-up at the BBC."],ans:4,tip:"Нийтлэл BBC дэх хоёр 'Guy'-ийн буруу андуурсан тухай хошин түүх. E = зөв."},
+{s:"Section 4 — Reading",n:45,context:"THE WRONG GUY! (Дээрх өгүүллэгийг уншина уу)",q:"What is the purpose of going to the BBC TV center for Mr Goma?",opts:["Someone has phoned for a taxi.","He wanted a job.","He was being interviewed on TV on purpose.","He wanted to meet an IT expert.","He watched a TV interview."],ans:1,tip:"Mr Goma IT туслах болох хүсэлтэй BBC-д ажлын ярилцлагад ирсэн. B = зөв."},
+{s:"Section 4 — Reading",n:46,context:"THE WRONG GUY! (Дээрх өгүүллэгийг уншина уу)",q:"What does the article suggest about Mr Goma's decision to follow the producer?",opts:["He was intentionally trying to deceive the BBC staff.","He was excited about being on TV.","He thought his name was mispronounced.","He was curious about the TV studio.","He thought he was being hired immediately."],ans:2,tip:"Producer 'Guy Kewney' гэж дуудахад Goma өөрийн нэрийн дуудлагыг буруу хэлсэн байх гэж бодсон. C = зөв."},
+{s:"Section 4 — Reading",n:47,context:"THE WRONG GUY! (Дээрх өгүүллэгийг уншина уу)",q:"What does the article mention about Mr Goma's behavior during the TV interview?",opts:["He immediately corrected the producer's mistake.","He refused to answer any questions.","He panicked and ran out of the studio.","He took it easy and attempted to answer the questions.","He asked for assistance from the BBC staff."],ans:3,tip:"'I just tried to answer the questions and stay calm' — тайван байж, асуултуудад хариулахыг оролдсон. D = зөв."},
+{s:"Section 4 — Reading",n:48,context:"THE WRONG GUY! (Дээрх өгүүллэгийг уншина уу)",q:"What is implied about the BBC staff's reaction to the mix-up during the interview?",opts:["They realized the mistake only after he had answered several questions.","They were completely unaware until viewers pointed it out.","They knew about the mix-up but continued the interview.","They stopped the interview as soon as they noticed the mistake.","They thought Mr Goma was playing a prank on them."],ans:0,tip:"'He answered three questions before the BBC staff became aware' — BBC ажилчид хэд хэдэн асуултын дараа анзаарсан. A = зөв."},
+{s:"Section 4 — Reading (Summary)",n:49,context:"Дараах өгүүлбэрүүдийн хоосон зайг дүйцэх үгсээр гүйцээ:\nA. since   B. as   C. even though   D. whereas   E. apart from\n\nGuy Goma was at the BBC for a job interview. As the two men had the same name, the producer got confused.",q:"[49] __________ the producer said the wrong name, Guy still went with her to answer the interviewer's question.",opts:["since","as","even though","whereas","apart from"],ans:2,tip:"'Even though' = хэдийгээр...ч гэсэн. Буруу нэр хэлсэн ч Goma дагасан — зөвшилцлийн холбоос."},
+{s:"Section 4 — Reading (Summary)",n:50,context:"Sentence connectors: A. since  B. as  C. even though  D. whereas  E. apart from",q:"Guy Kewney is an IT expert, [50] __________ Guy Goma is an IT assistant.",opts:["since","as","even though","whereas","apart from"],ans:3,tip:"'Whereas' = харин. Хоёр ялгаатай зүйлийг харьцуулах үед хэрэглэнэ."},
+{s:"Section 4 — Reading (Summary)",n:51,context:"Sentence connectors: A. since  B. as  C. even though  D. whereas  E. apart from",q:"[51] __________ looking a bit shocked, Goma gave no other sign that there was something wrong.",opts:["since","as","even though","whereas","apart from"],ans:4,tip:"'Apart from' = -аас бусад. Бага зэрэг цочирдсоноос бусад ямар ч шинж тэмдэг үзүүлэлгүй байсан."},
+{s:"Part II — 2.1 Үгийн хэлбэр",n:52,context:"The earliest complete calendars were probably based on lunar (a) ____ . But lunar years were not (b) ____ for agricultural purposes. Therefore, to keep in step with the sun, lunar-solar calendars were formed by adding (c) an ____ 'leap' month when the observation of crops made it seem necessary. Eventually the Gregorian civil calendar, a solar calendar that is calculated without (d) ____ to the moon, became the most popular and (e) ____ method of (f) ____ years.",q:"The earliest complete calendars were probably based on lunar (a) __________ .",opts:["observation","observe","observations","to observe","observatory"],ans:2,tip:"'Lunar observations' = сарны ажиглалтууд (олон тоо). Нэр үгийн олон тооны хэлбэр хэрэгтэй."},
+{s:"Part II — 2.1 Үгийн хэлбэр",n:53,context:"...But lunar years were not (b) ____ for agricultural purposes...",q:"But lunar years were not (b) __________ for agricultural purposes.",opts:["convenient","inconvenient","convenience","inconvenience","conveniently"],ans:0,tip:"'Convenient' = тохиромжтой (тэмдэг нэр). 'Not convenient' = тохиромжгүй байсан."},
+{s:"Part II — 2.1 Үгийн хэлбэр",n:54,context:"...lunar-solar calendars were formed by adding (c) an ____ 'leap' month...",q:"...lunar-solar calendars were formed by adding (c) an __________ 'leap' month...",opts:["additionally","addition","added","adding","additional"],ans:4,tip:"'Additional' = нэмэлт (тэмдэг нэр). 'An additional leap month' = нэмэлт сар."},
+{s:"Part II — 2.1 Үгийн хэлбэр",n:55,context:"...the Gregorian civil calendar, a solar calendar that is calculated without (d) ____ to the moon...",q:"...a solar calendar that is calculated without (d) __________ to the moon...",opts:["refer","reference","refers","referring","referred"],ans:1,tip:"'Without reference to' = -д хандалгүй. 'Reference' нэр үг хэрэгтэй."},
+{s:"Part II — 2.1 Үгийн хэлбэр",n:56,context:"...became the most popular and (e) ____ method of (f) ____ years.",q:"...became the most popular and (e) __________ method of measuring years.",opts:["impractical","practical","practice","practicality","practically"],ans:1,tip:"'Practical' = практик (тэмдэг нэр). 'The most popular and practical method' = хамгийн түгээмэл, практик арга."},
+{s:"Part II — 2.1 Үгийн хэлбэр",n:57,context:"...became the most popular and practical method of (f) ____ years.",q:"...became the most popular and practical method of (f) __________ years.",opts:["measurable","measured","measures","measuring","measurement"],ans:3,tip:"'Method of measuring' = хэмжих арга. 'Of + gerund (-ing)' бүтэц шаардлагатай."},
+{s:"Part II — 2.2 Ойролцоо утгатай үг",n:58,q:"The space shuttle covered VAST distances.\n'Vast' үгийн ойролцоо утгатай үгийг сонго:",opts:["huge","varying","hard","very","long"],ans:0,tip:"'Vast' = асар том, гигантын. 'Huge' = маш том — ижил утгатай."},
+{s:"Part II — 2.2 Ойролцоо утгатай үг",n:59,q:"The most unlikely people manage to COLLABORATE successfully.\n'Collaborate' үгийн ойролцоо утгатай үгийг сонго:",opts:["stay together","put together","stand together","get together","work together"],ans:4,tip:"'Collaborate' = хамтран ажиллах. 'Work together' = хамтдаа ажиллах — ижил утга."},
+{s:"Part II — 2.2 Ойролцоо утгатай үг",n:60,q:"She plans to PARTICIPATE in the marathon.\n'Participate' үгийн ойролцоо утгатай үгийг сонго:",opts:["take part in","complete","register","tussle","delay"],ans:0,tip:"'Participate' = оролцох. 'Take part in' = оролцох — ижил утга."},
+{s:"Part II — 2.2 Ойролцоо утгатай үг",n:61,q:"A child's family experiences are CRUCIAL for personality development.\n'Crucial' үгийн ойролцоо утгатай үгийг сонго:",opts:["obvious","evident","extensive","critical","wise"],ans:3,tip:"'Crucial' = чухал. 'Critical' = маш чухал, шийдвэрлэх — ижил утга."},
+{s:"Part II — 2.2 Эсрэг утгатай үг",n:62,q:"She had a COZY little apartment in Boston.\n'Cozy' үгийн ЭСРЭГ утгатай үгийг сонго:",opts:["tidy","dirty","warm","convenient","uncomfortable"],ans:4,tip:"'Cozy' = тухтай, дулаахан. Эсрэг нь 'uncomfortable' = тухгүй, тааламжгүй."},
+{s:"Part II — 2.2 Эсрэг утгатай үг",n:63,q:"The RENOWNED conductor made a guest appearance at the concert.\n'Renowned' үгийн ЭСРЭГ утгатай үгийг сонго:",opts:["well-known","famous","unknown","ordinary","mundane"],ans:2,tip:"'Renowned' = алдартай, нэр хүндтэй. Эсрэг нь 'unknown' = үл мэдэгдэх, алдаргүй."},
+{s:"Part II — 2.2 Эсрэг утгатай үг",n:64,q:"The police CONCEALED the vital evidence.\n'Concealed' үгийн ЭСРЭГ утгатай үгийг сонго:",opts:["hide","revealed","display","released","hidden"],ans:1,tip:"'Conceal' = нуух. Эсрэг нь 'revealed' = илчилсэн. 'Hide' = нуух (ижил утга)."},
+{s:"Part II — 2.2 Эсрэг утгатай үг",n:65,q:"I'm always sea-sick if the sea is ROUGH.\n'Rough' үгийн ЭСРЭГ утгатай үгийг сонго:",opts:["dangerous","stormy","calm","violent","hard"],ans:2,tip:"'Rough' (далай) = давалгаатай, бужигнасан. Эсрэг нь 'calm' = тайван, намуухан."},
+{s:"Part II — 2.3 Текст гүйцааах",n:66,context:"FLOODS\n\nFlooding has returned to parts of the south west after the equivalent of a month's (a) ____ fell in just 48 hours. In parts of Avon, one of the most (b) ____ areas, soldiers have been called in to help evacuate homes which are waist-deep in water. Thirty children had to be (c) ____ from a school bus after they were (d) ____ in flood water near Bristol. Many roads in the country are (e) ____. Weather forecasters have also issued 25 flood (f) ____ in other parts of the west of England. More rain is expected tonight.\n\nWord box: stranded / affected / impassable / warnings / rescued / rainfall",q:"Flooding has returned after the equivalent of a month's (a) __________ fell in just 48 hours.",opts:["stranded","affected","impassable","warnings","rainfall"],ans:4,tip:"'Rainfall' = хур бороо. Нэг сарын хур бороо 48 цагт унасан. Бусад үгс энд тохиромжгүй."},
+{s:"Part II — 2.3 Текст гүйцааах",n:67,context:"FLOODS (Дээрх текстийг уншина уу)",q:"In parts of Avon, one of the most (b) __________ areas, soldiers have been called in to help evacuate homes.",opts:["stranded","affected","impassable","warnings","rainfall"],ans:1,tip:"'Affected' = нөлөөлөгдсөн, хохирсон. Усны гамшгаас хамгийн их хохирсон газар нутаг."},
+{s:"Part II — 2.3 Текст гүйцааах",n:68,context:"FLOODS (Дээрх текстийг уншина уу)",q:"Thirty children had to be (c) __________ from a school bus after they were stranded in flood water.",opts:["stranded","affected","impassable","warnings","rescued"],ans:4,tip:"'Rescued' = аврагдсан. Хүүхдүүдийг автобуснаас аварсан."},
+{s:"Part II — 2.3 Текст гүйцааах",n:69,context:"FLOODS (Дээрх текстийг уншина уу)",q:"Thirty children had to be rescued from a school bus after they were (d) __________ in flood water near Bristol.",opts:["stranded","affected","impassable","warnings","rescued"],ans:0,tip:"'Stranded' = гацсан, ухарч гарах боломжгүй болсон. Усанд гацсан."},
+{s:"Part II — 2.3 Текст гүйцааах",n:70,context:"FLOODS (Дээрх текстийг уншина уу)",q:"Many roads in the country are (e) __________.",opts:["stranded","affected","impassable","warnings","rescued"],ans:2,tip:"'Impassable' = нэвтрэх боломжгүй. Усны улмаас олон зам хаагдсан."},
+{s:"Part II — 2.3 Текст гүйцааах",n:71,context:"FLOODS (Дээрх текстийг уншина уу)",q:"Weather forecasters have also issued 25 flood (f) __________ in other parts of England.",opts:["stranded","affected","impassable","warnings","rescued"],ans:3,tip:"'Warnings' = анхааруулга. 25 үерийн анхааруулга гаргасан."}
+];
+
+var L=['A','B','C','D','E'];
+var cur=0,ans=new Array(Q.length).fill(null),done=false;
+
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function show(id){
+  var ids=['test','score','review'];
+  for(var i=0;i<ids.length;i++){
+    document.getElementById(ids[i]).style.display=ids[i]===id?'block':'none';
+  }
+  window.scrollTo(0,0);
+}
+
+function render(){
+  var q=Q[cur];
+  var pct=Math.round(((cur+1)/Q.length)*100);
+  document.getElementById('pf').style.width=pct+'%';
+  document.getElementById('cnt').textContent=(cur+1)+' / '+Q.length;
+
+  var area=document.getElementById('qa');
+  while(area.firstChild) area.removeChild(area.firstChild);
+
+  // Section label
+  var sl=document.createElement('div');sl.className='sec';sl.textContent=q.s;area.appendChild(sl);
+
+  // Context
+  if(q.context){
+    var cb=document.createElement('div');cb.className='ctx';
+    var cl=document.createElement('div');cl.className='ctx-l';cl.textContent='📖 Уншилтын хэсэг';
+    cb.appendChild(cl);
+    var ct=document.createElement('div');ct.innerHTML=esc(q.context);
+    cb.appendChild(ct);area.appendChild(cb);
+  }
+
+  // Question block
+  var qb=document.createElement('div');qb.className='qb';
+  var qt=document.createElement('div');qt.className='qt';
+  var qn=document.createElement('span');qn.className='qn';qn.textContent=q.n;
+  var qs=document.createElement('span');qs.innerHTML=esc(q.q);
+  qt.appendChild(qn);qt.appendChild(qs);qb.appendChild(qt);
+
+  // Options
+  var od=document.createElement('div');od.className='opts';
+  q.opts.forEach(function(o,i){
+    var cls='opt';
+    if(done){if(i===q.ans) cls+=' cor';else if(ans[cur]===i) cls+=' wrn';}
+    else{if(ans[cur]===i) cls+=' sel';}
+    var lbl=document.createElement('label');lbl.className=cls;lbl.setAttribute('for','r'+i);
+    var inp=document.createElement('input');inp.type='radio';inp.name='q';inp.id='r'+i;inp.value=String(i);
+    if(!done&&ans[cur]===i) inp.checked=true;
+    if(done) inp.disabled=true;
+    var sp=document.createElement('span');sp.className='ol';sp.textContent=L[i];
+    var tx=document.createElement('span');tx.className='ot';tx.innerHTML=esc(o);
+    lbl.appendChild(inp);lbl.appendChild(sp);lbl.appendChild(tx);od.appendChild(lbl);
+  });
+  qb.appendChild(od);
+
+  if(done){
+    var ex=document.createElement('div');ex.className='expl';
+    ex.innerHTML='<strong>💡 Тайлбар:</strong> '+esc(q.tip);
+    qb.appendChild(ex);
+  }
+  area.appendChild(qb);
+
+  if(!done){
+    var radios=od.querySelectorAll('input[type=radio]');
+    for(var j=0;j<radios.length;j++){
+      (function(idx){
+        radios[idx].addEventListener('change',function(){ans[cur]=idx;render();});
+      })(j);
+    }
+  }
+
+  document.getElementById('pb').style.display=cur>0?'':'none';
+  document.getElementById('nb').style.display=cur<Q.length-1?'':'none';
+  document.getElementById('db').style.display=(cur===Q.length-1&&!done)?'':'none';
+}
+
+function tap(el,fn){
+  var t=false;
+  el.addEventListener('touchstart',function(e){t=true;fn(e);},{passive:false});
+  el.addEventListener('click',function(e){if(!t) fn(e);t=false;});
+}
+
+tap(document.getElementById('pb'),function(){if(cur>0){cur--;render();window.scrollTo(0,0);}});
+tap(document.getElementById('nb'),function(){if(cur<Q.length-1){cur++;render();window.scrollTo(0,0);}});
+
+tap(document.getElementById('db'),function(){
+  done=true;
+  var c=0,w=0,s=0;
+  Q.forEach(function(q,i){if(ans[i]===null) s++;else if(ans[i]===q.ans) c++;else w++;});
+  var pct=Math.round((c/Q.length)*100);
+  var tot=Math.round(200+(c/Q.length)*600);
+  document.getElementById('spct').textContent=pct+'%';
+  document.getElementById('scor').textContent=c;
+  document.getElementById('swrn').textContent=w;
+  document.getElementById('sskp').textContent=s;
+  document.getElementById('stot').textContent=tot+' / 800';
+  var gr=pct>=90?'🏆 Маш сайн! Гайхалтай!':pct>=75?'⭐ Сайн! Цааш хичээ!':pct>=60?'📗 Дунд зэрэг':'📕 Дахин давтан суралц';
+  document.getElementById('sgr').textContent=gr;
+  document.getElementById('sds').textContent=c+' / '+Q.length+' зөв хариулсан';
+  show('score');
+  var circ=289;
+  setTimeout(function(){document.getElementById('rfg').style.strokeDashoffset=circ-(circ*pct/100);},150);
+});
+
+tap(document.getElementById('rvb'),function(){
+  var rv=document.getElementById('rvc');
+  while(rv.firstChild) rv.removeChild(rv.firstChild);
+  var bad=false;
+  Q.forEach(function(q,i){
+    if(ans[i]===q.ans) return;bad=true;
+    var item=document.createElement('div');item.className='ri bad';
+    var ico=document.createElement('span');ico.className='ric';ico.textContent='✗';
+    var bd=document.createElement('div');
+    var ya=ans[i]!==null?L[ans[i]]+') '+q.opts[ans[i]]:'Хариулаагүй';
+    var ca=L[q.ans]+') '+q.opts[q.ans];
+    bd.innerHTML='<div class="riq">'+q.n+'. '+esc(q.q)+'</div>'+
+      '<div class="ria"><span class="w">Таны: '+esc(ya)+'</span> → <span class="c">Зөв: '+esc(ca)+'</span></div>'+
+      '<div class="rit">💡 '+esc(q.tip)+'</div>';
+    item.appendChild(ico);item.appendChild(bd);rv.appendChild(item);
+  });
+  if(!bad){var ok=document.createElement('div');ok.className='allok';ok.textContent='🎉 Бүх асуултад зөв хариулсан байна!';rv.appendChild(ok);}
+  show('review');
+});
+
+function restart(){cur=0;ans=new Array(Q.length).fill(null);done=false;show('test');render();}
+tap(document.getElementById('rb'),restart);
+tap(document.getElementById('rb2'),restart);
+tap(document.getElementById('bk'),function(){show('score');});
+
+// Start immediately
+render();
+</script>
+</body>
+</html>
